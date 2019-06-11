@@ -296,8 +296,10 @@
 										    </g>
 										</svg>
                                     </div>
-                                    <h3 class="feature-title mt-24">Queue A</h3>
-                                    <p>Time: <input type="range" name="pointA" min="0" max="10"></p>
+									<h3 class="feature-title mt-24">Queue A</h3>
+									<form name="pointA">
+										<p>Time: <input type="range" name="pointAInput" id="pointAInputId" value="50" min="50" max="500" oninput="pointAOutputId.value = pointAInputId.value"><output name="pointAOutput" id="pointAOutputId">50</output></p>
+									</form>
                                 </div>
                             </div>
 							<div class="feature is-revealing">
@@ -322,7 +324,9 @@
 										</svg>
                                     </div>
                                     <h3 class="feature-title mt-24">Queue B</h3>
-                                    <p>Time: <input type="range" name="pointB" min="0" max="10"></p>
+                                    <form name="pointA">
+										<p>Time: <input type="range" name="pointBInput" id="pointBInputId" value="50" min="50" max="500" oninput="pointBOutputId.value = pointBInputId.value"><output name="pointBOutput" id="pointBOutputId">50</output></p>
+									</form>
                                 </div>
                             </div>
                             <div class="feature is-revealing">
@@ -352,7 +356,9 @@
 										</svg>
                                     </div>
                                     <h3 class="feature-title mt-24">Queue C</h3>
-                                    <p>Time: <input type="range" name="pointC" min="0" max="10"></p>
+                                    <form name="pointA">
+										<p>Time: <input type="range" name="pointCInput" id="pointCInputId" value="50" min="50" max="500" oninput="pointCOutputId.value = pointCInputId.value"><output name="pointCOutput" id="pointCOutputId">50</output></p>
+									</form>
                                 </div>
                             </div>						
                             <div class="feature is-revealing">
