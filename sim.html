@@ -31,23 +31,16 @@
 
     $result = mysqli_query($conn,"SELECT * FROM programs");
 
-    echo "<table border='1'>
-    <tr>
-    <th>program1</th>
-    <th>program2</th>
-    </tr>";
 
     while($row = mysqli_fetch_array($result))
     {
-      echo "<tr>";
-      echo "<td>" . $row['program1'] . "</td>";
-      echo "<td>" . $row['program2'] . "</td>";
-      echo "</tr>";
+      echo "<br>";
+      echo "<p>" . $row[0] . "</p>";
+      echo "<p>" . $row[1] . "</p>";
+
     }
-    echo "</table>";
 
-    mysqli_close($con);
-
+    $conn->close();
 
   }
 ?>
