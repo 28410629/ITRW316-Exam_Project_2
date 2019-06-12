@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# add the following to "sudo crontab -e"
-# * * * * * pull_script.sh
+# this script should be located within the main directroy of the git repo
+
+# --execute command below to store credentials for git on server : 
+# git config --global credential.helper 'store --file ~/.my-credentials'
+
+# --add the following to "sudo crontab -e", take note dir should be set to a directory that the script is located in.
+# * * * * * dir/pull_script.sh
 
 ACTION='\033[1;90m'
 FINISHED='\033[1;96m'
@@ -24,7 +29,9 @@ if [ "$BRANCH" != "master" ]
       UPSTREAMHASH=$(git rev-parse master@{upstream})
       if [ "$HEADHASH" != "$UPSTREAMHASH" ]
         then
-          echo -e ${ERROR}Not up to date with origin. Aborting.${NOCOLOR}
+          # add code here to set what happens when not up to date
+          echo -e ${ERROR}Not up to date with origin. Pulling.${NOCOLOR}
+          git pull
           echo
           exit 0
         else
