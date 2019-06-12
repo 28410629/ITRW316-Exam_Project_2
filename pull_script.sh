@@ -31,7 +31,7 @@ if [ "$BRANCH" != "master" ]
         then
           # add code here to set what happens when not up to date
           echo "Not up to date with origin. Pulling." >> /home/userMorne/pull.log
-          git pull
+          git pull >>/home/userMorne/pull.log 2>&1
           rm -Rv /var/www/html/* >>/home/userMorne/pull.log 2>&1
           cp -Rv ./* /var/www/html/ >>/home/userMorne/pull.log 2>&1
           echo
