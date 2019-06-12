@@ -33,15 +33,15 @@
 
     echo "<table border='1'>
     <tr>
-    <th>Program_A_Arrival</th>
-    <th>Program_A_Execution</th>
+    <th>program1</th>
+    <th>program2</th>
     </tr>";
 
     while($row = mysqli_fetch_array($result))
     {
       echo "<tr>";
-      echo "<td>" . $row[1] . "</td>";
-      echo "<td>" . $row[2] . "</td>";
+      echo "<td>" . $row['program1'] . "</td>";
+      echo "<td>" . $row['program2'] . "</td>";
       echo "</tr>";
     }
     echo "</table>";
