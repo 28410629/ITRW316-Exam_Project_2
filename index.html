@@ -1,4 +1,58 @@
 <!DOCTYPE html>
+
+<?php
+
+$dbhost = 'localhost';
+$dbuser = 'userMorne';
+$dbpass = 'root';
+$db = 'Project2';
+
+$dbconn = mysql_connect($dbhost, $dbuser, $dbpass);
+mysql_select_db($db);
+
+if (isset($_POST['submit']))
+{
+   $program1   = $_POST['arrivalTimeA'];
+   $program1_ex   = $_POST['executeTimeA'];
+
+   $program2   = $_POST['arrivalTimeB'];
+   $program2_ex   = $_POST['executeTimeB'];
+
+   $program3   = $_POST['arrivalTimeC'];
+   $program3_ex   = $_POST['executeTimeC'];
+
+   $program4   = $_POST['arrivalTimeD'];
+   $program4_ex   = $_POST['executeTimeD'];
+
+   $program5   = $_POST['arrivalTimeE'];
+   $program5_ex   = $_POST['executeTimeE'];
+
+   $program6   = $_POST['arrivalTimeF'];
+   $program6_ex   = $_POST['executeTimeF'];
+
+   $program7   = $_POST['arrivalTimeG'];
+   $program7_ex   = $_POST['executeTimeG'];
+
+   $program8   = $_POST['arrivalTimeH'];
+   $program8_ex   = $_POST['executeTimeH'];
+
+
+
+
+$query = ("INSERT INTO customer ([LName], [FName], [MName], [Street], [City], [ZipCode], [Email], [ContactNo]) VALUES ('$Lastname', '$firstname', '$Middlename', '$address', '$city','$zipcode', '$email', '$number')");
+
+if(mysql_query($query))
+{
+  echo "<script>alert('INSERTED SUCCESSFULLY');</script>";
+}
+else
+{
+  echo "<script>alert('FAILED TO INSERT');</script>";
+}
+
+}
+?>
+
 <html lang="en" class="no-js">
 <head>
     <meta charset="utf-8">
@@ -51,8 +105,8 @@
 							<div>Eon Viljoen : 28807995</div>
 							<p>Morne Venter : 28634748</p>
 							<h3 class="feature-title mt-24">Project Details</h3>
-							<p>&bullet; Write a web system that ask the user for information on a number of processes, the arrival time as well as how long each process should execute.</p> 
-							<p>&bullet; Save this data in a database on the web server.</p> 
+							<p>&bullet; Write a web system that ask the user for information on a number of processes, the arrival time as well as how long each process should execute.</p>
+							<p>&bullet; Save this data in a database on the web server.</p>
 							<p>&bullet; On another page the user should be able to set three "sliders" to indicate the time quantum of each queue in multiple queue scheduling.</p>
 							<p>&bullet; Queue one is shorter or equal to queue two and queue two is shorter or equal to queue three.</p>
 							<p>&bullet; Show the multiple queue scheduling of the processes (as saved in the table) using these time quantum values.</p>
@@ -384,7 +438,7 @@
 									<a class="button button-primary button-shadow" href="sim.html">Store and Proceed</a>
                                 </div>
 							</div>
-							
+
                         </div>
                     </div>
                     &nbsp;
