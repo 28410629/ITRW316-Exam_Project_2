@@ -736,10 +736,32 @@
 
 		function getValues() {
 			// for loop values
-			var i;
-			var j;
+			var i; // assign
+			var j; // time unit
+			var a; // decrement A
+			var b; // check arrivals
+			var c; // execution time queue 1
+			var d; // execution time queue 2
+			var e; // execution time queue 3
+			var f; // decrement execution time queue 1
+			var g; // decrement execution time queue 2
+			var h; // decrement execution time queue 3
+			var k; // remove programs that are done!
+			var l;
 			var arr = [];
 			var item = [];
+			// queue bools
+			var q1 = false;
+			var q2 = false;
+			var q3 = false;
+			// time quanta for queues (DO NOT CHANGE FOR RESET!)
+			var q1T = document.getElementById("pointAInputId").value; 
+			var q2T = document.getElementById("pointBInputId").value; 
+			var q3T = document.getElementById("pointCInputId").value; 
+			// time quanta for queues (DO NOT CHANGE FOR RESET!)
+			var q1Time = q1T; 
+			var q2Time = q2T;
+			var q3Time = q3T;
 			// values from textboxes
 			var elements = ["programArrivalA","programExecutionA",
 							"programArrivalB","programExecutionB",
@@ -751,20 +773,104 @@
 							"programArrivalH","programExecutionH"];
 			// assign values
 			for (i = 0; i < 16; i = i + 2) {
-				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value];
+				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, 0]; 
+				/* 	item:
+					0 - A
+					1 - E
+					2 - current assigned queue
+				*/
 				arr.push(item);
-				
 			}
-			// print results
-			for (j = 0; j < arr.length; j++) {
-				// minus arrival
+			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
+			for (j = 0; j < 500; j++) {
+				// decrement current active queue!
+				if (q1) {
+					
+				} else {
+					if (q2) {
+						
+					} else {
+						
+					}
+				}
+				// decrement arrival time unit
+				for (a = 0; a < arr.length; a++) {
+					arr[a][0]--; 
+				}
+				// remove programs that are done!
+				for (k = 0; k < arr.length; k++) {
+					if (arr[k][1] == 0) {
+						arr.pop([k]); 
+					}
+				}
+				// decrement execution time unit from other queues
+				for (c = 0; c < arr.length; c++) { // queue 1
+					if (arr[c][2] == 1) {
+						q1 = true;
+					}
+					if (arr[c][2] == 2) {
+						q2 = true;
+					}
+					if (arr[c][2] == 3) {
+						q3 = true;
+					}
+				}
+				if (q1) {
+					// decrement execution on queue 1
+					for (f = 0; f < arr.length; f++) { // queue 1
+						if (arr[f][2] == 1) {
+							arr[f][1]--;
+						}
+					}
+				} else {
+					if (q2) {
+						// decrement execution on queue 2
+						for (g = 0; g < arr.length; g++) { // queue 2
+							if (arr[g][2] == 2) {
+								arr[g][1]--;
+							}
+						}
+					} else {
+						if (q3) {
+							// decrement execution on queue 3
+							for (h = 0; h < arr.length; h++) { // queue 2
+								if (arr[h][2] == 3) {
+									arr[h][1]--;
+								}
+							}
+						} else {
+							// nothing to decrement
+						}
+					}
+				}
+				// move programs to next queue!
+				if (q1) {
+					if (condition) {
+						
+					}
+				} else {
+					if (q2) {
+						if (condition) {
+							
+						}
+					}
+				}
 				// check arrival
-				// add arrival - q1
-				// 
+				for (b = 0; b < arr.length; b++) {
+					if (arr[b][0] == 0) {
+						// add arrival to queue 1
+						arr[b][2] = 1;
+					}
+				}
+				// print time unit result 
 				document.getElementById("resultsTextArea").value += arr[j][0];
 				document.getElementById("resultsTextArea").value += "\n";
 				document.getElementById("resultsTextArea").value += arr[j][1];
 				document.getElementById("resultsTextArea").value += "\n";
+				// RESET VALUES FOR NEXT ROUND
+				q1 = false;
+				q2 = false;
+				q3 = false;
 			}
 		}
 	</script>
