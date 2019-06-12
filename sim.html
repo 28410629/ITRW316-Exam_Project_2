@@ -29,6 +29,26 @@
       die("Connection failed: " . $conn->connect_error);
 
 
+    $result = mysqli_query($conn,"SELECT * FROM programs");
+
+    echo "<table border='1'>
+    <tr>
+    <th>Program_A_Arrival</th>
+    <th>Program_A_Execution</th>
+    </tr>";
+
+    while($row = mysqli_fetch_array($result))
+    {
+      echo "<tr>";
+      echo "<td>" . $row[1] . "</td>";
+      echo "<td>" . $row[2] . "</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+
+    mysqli_close($con);
+
+
   }
 ?>
 
