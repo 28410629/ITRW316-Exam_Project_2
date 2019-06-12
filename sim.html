@@ -7,7 +7,28 @@
     <title>ITRW316 Project 2</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Playfair+Display:700" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js">
+		function rangeOne() {
+			// get and set value of slider
+			var input = document.getElementById("pointAInputId").value;
+			document.getElementById("pointAOutputId").value = input;
+			// set min value of second slider
+			document.getElementById("pointBInputId").min = input;
+			// set current value of second slider
+			document.getElementById("pointBInputId").value = input;
+			document.getElementById("pointBOutputId").value = input;
+		}
+		function rangeTwo() {
+			// get and set value of slider
+			var input = document.getElementById("pointBInputId").value;
+			document.getElementById("pointBOutputId").value = input;
+			// set min value of second slider
+			document.getElementById("pointCInputId").min = input;
+			// set current value of second slider
+			document.getElementById("pointCInputId").value = input;
+			document.getElementById("pointCOutputId").value = input;
+		}
+	</script>
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
@@ -298,7 +319,7 @@
                                     </div>
 									<h3 class="feature-title mt-24">Queue A</h3>
 									<form name="pointA">
-										<p>Time: <input class="slider-features" type="range" name="pointAInput" id="pointAInputId" value="50" min="50" max="500" oninput="pointAOutputId.value = pointAInputId.value"><output name="pointAOutput" id="pointAOutputId">50</output></p>
+										<p>Time: <input class="slider-features" type="range" name="pointAInput" id="pointAInputId" value="50" min="50" max="500" oninput="rangeOne()"><output name="pointAOutput" id="pointAOutputId">50</output></p>
 									</form>
                                 </div>
                             </div>
@@ -325,7 +346,7 @@
                                     </div>
                                     <h3 class="feature-title mt-24">Queue B</h3>
                                     <form name="pointA">
-										<p>Time: <input class="slider-features" type="range" name="pointBInput" id="pointBInputId" value="50" min="50" max="500" oninput="pointBOutputId.value = pointBInputId.value"><output name="pointBOutput" id="pointBOutputId">50</output></p>
+										<p>Time: <input class="slider-features" type="range" name="pointBInput" id="pointBInputId" value="50" min="50" max="500" oninput="rangeTwo()"><output name="pointBOutput" id="pointBOutputId">50</output></p>
 									</form>
                                 </div>
                             </div>
