@@ -45,11 +45,12 @@
           $_SESSION["lastID"] = mysqli_insert_id($conn);
           echo "New record created successfully, ID:".$_SESSION["lastID"];
           header('Location: /sim.html');
+          $conn->close();
           exit();
       }
       else {
           echo "Error: " . $sql . "<br>" . $conn->error;
-}
+          }
 
 
       $conn->close();
