@@ -788,17 +788,18 @@
 				if(item[0] > largestA)
 				{
 					largestA=item[0];
-					console.log("A : " + largestA);
+
 				}
 				if(item[1] > largestE)
 				{
 					largestE=item[1];
-					console.log("E : " + largestE);
+
 				}
 				arr.push(item);
 			}
 
 			var totalTime = largestE+largestA;
+		  console.log("Totes : " + totalTime);
 
 			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
 			for (j = 1; j < totalTime; j++) {
