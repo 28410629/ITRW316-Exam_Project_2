@@ -786,7 +786,7 @@
 				arr.push(item);
 			}
 			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
-			for (j = 0; j < 500; j++) {
+			for (j = 1; j < 500; j++) {
 				// decrement current active queue!
 				if (q1) {
 					q1Time--;
@@ -886,6 +886,8 @@
 					if (arr[q1Result][2] == 1) {
 						document.getElementById("resultsTextArea").value += q1Result;
 						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q1Result][0];
+						document.getElementById("resultsTextArea").value += ", ";
 						document.getElementById("resultsTextArea").value += arr[q1Result][1];
 						document.getElementById("resultsTextArea").value += ") | ";
 					}
@@ -897,6 +899,8 @@
 					if (arr[q2Result][2] == 2) {
 						document.getElementById("resultsTextArea").value += q2Result;
 						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q2Result][0];
+						document.getElementById("resultsTextArea").value += ", ";
 						document.getElementById("resultsTextArea").value += arr[q2Result][1];
 						document.getElementById("resultsTextArea").value += ") | ";
 					}
@@ -908,6 +912,8 @@
 					if (arr[q3Result][2] == 3) {
 						document.getElementById("resultsTextArea").value += q3Result;
 						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q3Result][0];
+						document.getElementById("resultsTextArea").value += ", ";
 						document.getElementById("resultsTextArea").value += arr[q3Result][1];
 						document.getElementById("resultsTextArea").value += ") | ";
 					}
