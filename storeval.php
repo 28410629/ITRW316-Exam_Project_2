@@ -45,7 +45,7 @@
           echo "ID of last inserted record is: " . mysqli_insert_id($conn);
         //  $_SESSION["lastID"] = mysql_insert_id();
           echo "New record created successfully";
-          header('Location: /sim.html');
+        //  header('Location: /sim.html');
           exit();
       }
       else {
