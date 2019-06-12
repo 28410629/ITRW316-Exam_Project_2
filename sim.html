@@ -5,21 +5,7 @@
 
 <?php
   session_start();
-
-  $lastID =  $_SESSION["lastID"];
-
-  $dbhost = '127.0.0.1';
-  $dbuser = 'userMorne';
-  $dbpass = 'root';
-  $db = 'Project2';
-
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-
-  if ($conn->connect_error) {
-      echo "Connection failed: ".$conn->connect_error;
-  } else {
-    $conn->close();
-  }
+  echo $db."is my database";
 ?>
 
 <head>
