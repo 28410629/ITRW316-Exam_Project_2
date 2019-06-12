@@ -1,6 +1,6 @@
 
 <?php
-  ehco "<p>php has started</p>";
+  ehco '<p>php has started</p>';
 
   $dbhost = '40.127.6.141';
   $dbuser = 'userMorne';
@@ -16,7 +16,7 @@
 
   mysql_select_db($db,$dbconn);
 
-  echo "Conn succsesfull";
+  echo 'Conn succsesfull';
 
   if (isset($_POST['submit']))
   {
@@ -49,7 +49,7 @@
 
       if(mysql_query($query,$dbconn))
       {
-        echo "1 record added";
+        echo '1 record added';
       }
       else
       {
