@@ -5,7 +5,7 @@
 
 <?php
   session_start();
-  $lastID =  $_SESSION["lastID"];
+
   $dbhost = 'localhost';
   $dbuser = 'userMorne';
   $dbpass = 'root';
@@ -17,6 +17,8 @@
       die("Connection failed: " . $conn->connect_error);
   }
 
+
+  $lastID =  $_SESSION["lastID"];
   $query = "Select * from programs where id=?lastID";
   $result = mysql_query($query);
   echo "<table>";
