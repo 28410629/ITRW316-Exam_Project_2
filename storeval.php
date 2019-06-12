@@ -1,6 +1,5 @@
 
 <?php
-  echo 'script has started';
 
   $dbhost = 'localhost';
   $dbuser = 'userMorne';
@@ -44,6 +43,8 @@
 
       if ($conn->query($sql) === TRUE) {
           echo "New record created successfully";
+          header('Location: /sim.html');
+          exit();
       }
       else {
           echo "Error: " . $sql . "<br>" . $conn->error;
