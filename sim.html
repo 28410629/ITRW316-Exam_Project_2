@@ -773,7 +773,10 @@
 							"programArrivalH","programExecutionH"];
 			// assign values
 			for (i = 0; i < 16; i = i + 2) {
-				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, -1, q1T];
+				if(i = 0)
+					item = [2, 5, -1, q1T];
+				else
+					item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, -1, q1T];
 				/* 	item:
 					0 - A
 					1 - E
