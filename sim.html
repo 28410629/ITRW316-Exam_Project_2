@@ -19,28 +19,57 @@
   $db = 'Project2';
   $myID = $_SESSION["lastID"];
 
-  echo "my id is: ".$myID;
+
 
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
 
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-
-
-    $result = mysqli_query($conn,"SELECT * FROM programs");
-
-
-    while($row = mysqli_fetch_array($result))
-    {
-      echo "<br>";
-      echo "<p>" . $row[0] . "</p>";
-      echo "<p>" . $row[1] . "</p>";
-
-    }
-
-    $conn->close();
-
+  if(! $conn )
+  {
+     die('Could not connect: ' . mysqli_error());
   }
+
+  $sql = "SELECT * FROM programs WHERE ID=$myID";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+
+      while($row = $result->fetch_assoc())
+      {
+          
+
+          $_SESSION["pr1"] = $row["program1"];
+          $_SESSION["pr1_l"] = $row["program1_leng"];
+
+          $_SESSION["pr2"] = $row["program2"];
+          $_SESSION["pr2_l"] = $row["program2_leng"];
+
+          $_SESSION["pr3"] = $row["program3"];
+          $_SESSION["pr3_l"] = $row["program3_leng"];
+
+          $_SESSION["pr4"] = $row["program4"];
+          $_SESSION["pr4_l"] = $row["program4_leng"];
+
+          $_SESSION["pr5"] = $row["program5"];
+          $_SESSION["pr5_l"] = $row["program5_leng"];
+
+          $_SESSION["pr6"] = $row["program6"];
+          $_SESSION["pr6_l"] = $row["program6_leng"];
+
+          $_SESSION["pr7"] = $row["program7"];
+          $_SESSION["pr7_l"] = $row["program7_leng"];
+
+          $_SESSION["pr8"] = $row["program8"];
+          $_SESSION["pr8_l"] = $row["program8_leng"];
+
+      }
+  }
+  else
+  {
+      echo "0 results";
+  }
+
+  $conn->close();
+
 ?>
 
 	<script>
@@ -704,9 +733,25 @@
 			document.getElementById("pointCInputId").value = input;
 			document.getElementById("pointCOutputId").value = input;
 		}
+
+		function getValues() {
+			var elements = ["programArrivalA","programExecutionA",
+							"programArrivalB","programExecutionB",
+							"programArrivalC","programExecutionC",
+							"programArrivalD","programExecutionD",
+							"programArrivalE","programExecutionE",
+							"programArrivalF","programExecutionF",
+							"programArrivalG","programExecutionG",
+							"programArrivalH","programExecutionH",];
+			//var arr = [];
+			var i;
+			for (i = 0; i < elements.length; i++) {
+				document.getElementById(resultsTextArea).value += document.getElementById(elements[i]).value;
+			}
+
+		}
 	</script>
 </head>
-
 <body class="is-boxed has-animations">
 	<div class="body-wrap boxed-container">
 		<header class="site-header">
@@ -775,8 +820,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program A</h3>
-									<p class="text-sm mb-0" id="programArrivalA">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionA">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutA" id="programArrivalA"><?php echo $_SESSION["pr1"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutA" id="programExecutionA"><?php echo $_SESSION["pr1_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programB">
@@ -805,8 +850,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program B</h3>
-									<p class="text-sm mb-0" id="programArrivalB">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionB">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutB" id="programArrivalB"><?php echo $_SESSION["pr2"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutB" id="programExecutionB"><?php echo $_SESSION["pr2_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programC">
@@ -840,8 +885,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program C</h3>
-									<p class="text-sm mb-0" id="programArrivalC">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionC">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutC" id="programArrivalC"><?php echo $_SESSION["pr3"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutC" id="programExecutionC"><?php echo $_SESSION["pr3_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programD">
@@ -870,8 +915,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program D</h3>
-									<p class="text-sm mb-0" id="programArrivalD">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionD">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutD" id="programArrivalD"><?php echo $_SESSION["pr4"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutD" id="programExecutionD"><?php echo $_SESSION["pr4_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programE">
@@ -904,8 +949,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program E</h3>
-									<p class="text-sm mb-0" id="programArrivalE">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionE">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutE" id="programArrivalE"><?php echo $_SESSION["pr5"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutE" id="programExecutionE"><?php echo $_SESSION["pr5_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programF">
@@ -934,8 +979,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program F</h3>
-									<p class="text-sm mb-0" id="programArrivalF">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionF">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutF" id="programArrivalF"><?php echo $_SESSION["pr6"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutF" id="programExecutionF"><?php echo $_SESSION["pr6_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programG">
@@ -964,8 +1009,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program G</h3>
-									<p class="text-sm mb-0" id="programArrivalG">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionG">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutG" id="programArrivalG"><?php echo $_SESSION["pr7"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutG" id="programExecutionG"><?php echo $_SESSION["pr7_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programH">
@@ -999,8 +1044,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program H</h3>
-									<p class="text-sm mb-0" id="programArrivalH">Arrival time:</p>
-									<p class="text-sm mb-0" id="programExecutionH">Execution time:</p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutH" id="programArrivalH"><?php echo $_SESSION["pr8"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutH" id="programExecutionH"><?php echo $_SESSION["pr8_l"] ?></output></p>
 								</div>
 							</div>
 						</div>
@@ -1145,7 +1190,7 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24"></h3>
-									<a class="button button-primary button-shadow" href="#">Run</a>
+									<a class="button button-primary button-shadow" onclick="getValues()">Run</a>
 								</div>
 							</div>
 
