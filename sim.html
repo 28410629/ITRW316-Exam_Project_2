@@ -755,39 +755,37 @@
 			var q2 = false;
 			var q3 = false;
 			// time quanta for queues (DO NOT CHANGE FOR RESET!)
-			var q1T = document.getElementById("pointAInputId").value;
-			var q2T = document.getElementById("pointBInputId").value;
-			var q3T = document.getElementById("pointCInputId").value;
-			// time quanta for queues (DO NOT CHANGE FOR RESET!)
-			var q1Time = q1T;
-			var q2Time = q2T;
-			var q3Time = q3T;
+			var q1T = 2;
+			var q2T = 3;
+			var q3T = 4;
 			// result for loop variables
 			var q1Result;
 			var q2Result;
 			var q3Result;
 			// values from textboxes
-			var elements = ["programArrivalA","programExecutionA",
-							"programArrivalB","programExecutionB",
-							"programArrivalC","programExecutionC",
-							"programArrivalD","programExecutionD",
-							"programArrivalE","programExecutionE",
-							"programArrivalF","programExecutionF",
-							"programArrivalG","programExecutionG",
-							"programArrivalH","programExecutionH"];
+			var elements = [-1, -1, // 0
+				4, 4, // 1
+				2, 6, // 2
+			-1, -1, // 3
+			-1, -1, // 4
+			-1, -1, // 5
+			-1, -1, // 6
+			-1, -1
+			]; // 7
 			// assign values
 			for (i = 0; i < 16; i = i + 2) {
-				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, 0];
+				item = [elements[i], elements[i + 1], -1, q1T];
 				/* 	item:
 					0 - A
 					1 - E
 					2 - current assigned queue
+					3 - executed time per queue
 				*/
 				arr.push(item);
 			}
 			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
-			for (j = 1; j < 500; j++) {
-
+			for (j = 1; j < 34; j++) {
+				// decrement current active queue!
 				for (c = 0; c < arr.length; c++) { // queue 1
 					if (arr[c][2] == 1) {
 						q1 = true;
@@ -799,17 +797,35 @@
 						q3 = true;
 					}
 				}
-
-				// decrement current active queue!
 				if (q1) {
-					q1Time--;
+
+
+					for (d = 0; d < arr.length; d++) {
+
+						if (arr[d][2] == 1 && arr[d][3] == 0) {
+							//arr[d][1]--;
+							arr[d][2] = 2;
+							arr[d][3] = q2T;
+						}
+
+
+					}
 				} else {
 					if (q2) {
-						q2Time--;
-					} else {
-						if (q3) {
-							q3Time--;
+
+
+						for (e = 0; e < arr.length; e++) {
+
+							if (arr[e][2] == 2 && arr[e][3] == 0) {
+								//arr[e][1]--;
+								arr[e][2] = 3;
+								arr[e][3] = q3T;
+							}
+
+
 						}
+					} else {
+
 					}
 				}
 				// decrement arrival time unit
@@ -819,7 +835,7 @@
 				// remove programs that are done!
 				for (k = 0; k < arr.length; k++) {
 					if (arr[k][1] == 0) {
-						arr.pop([k]);
+						arr[k][2] = -1;
 					}
 				}
 				// decrement execution time unit from other queues
@@ -839,6 +855,7 @@
 					for (f = 0; f < arr.length; f++) { // queue 1
 						if (arr[f][2] == 1) {
 							arr[f][1]--;
+							arr[f][3]--;
 						}
 					}
 				} else {
@@ -847,6 +864,7 @@
 						for (g = 0; g < arr.length; g++) { // queue 2
 							if (arr[g][2] == 2) {
 								arr[g][1]--;
+								arr[g][3]--;
 							}
 						}
 					} else {
@@ -855,6 +873,7 @@
 							for (h = 0; h < arr.length; h++) { // queue 2
 								if (arr[h][2] == 3) {
 									arr[h][1]--;
+									arr[h][3]--;
 								}
 							}
 						} else {
@@ -862,20 +881,12 @@
 						}
 					}
 				}
-				// move programs to next queue!
+				// move programs to next queue! REVISE QUANTUM IS 0 SHOULD ACTIVATE move!
 				if (q1) {
-					for (d = 0; d < array.length; d++) {
-						if (arr[b][0] == 1) {
-							arr[b][2] = 2;
-						}
-					}
+
 				} else {
 					if (q2) {
-						for (e = 0; e < array.length; e++) {
-							if (arr[b][0] == 2) {
-								arr[b][2] = 3;
-							}
-						}
+
 					} else {
 						if (q3) {
 							// do nothing!
@@ -889,51 +900,39 @@
 						arr[b][2] = 1;
 					}
 				}
-				// print time unit result
-				document.getElementById("resultsTextArea").value += "Time : ";
-				document.getElementById("resultsTextArea").value += j;
-				document.getElementById("resultsTextArea").value += "\n";
-				document.getElementById("resultsTextArea").value += "Q1 :";
+				// print time unit result 
+				console.log("Time : ");
+				console.log(j);
+				//document.getElementById("resultsTextArea").value += "\n";
+				console.log("Q1 : ");
 				// for to add all q1
 				for (q1Result = 0; q1Result < arr.length; q1Result++) { // queue 1
 					if (arr[q1Result][2] == 1) {
-						document.getElementById("resultsTextArea").value += q1Result;
-						document.getElementById("resultsTextArea").value += "(";
-						document.getElementById("resultsTextArea").value += arr[q1Result][0];
-						document.getElementById("resultsTextArea").value += ", ";
-						document.getElementById("resultsTextArea").value += arr[q1Result][1];
-						document.getElementById("resultsTextArea").value += ") | ";
+						//if (arr[q1Result][2] == 1 && arr[q1Result][1] > 0 && arr[q1Result][0] < 1) {
+						console.log("Program : " + q1Result + " (" + arr[q1Result][0] + "," + arr[q1Result][1] + "," + arr[q1Result][3] + ")");
 					}
 				}
-				document.getElementById("resultsTextArea").value += "\n";
-				document.getElementById("resultsTextArea").value += "Q2 :";
+				//document.getElementById("resultsTextArea").value += "\n";
+				console.log("Q2 :");
 				// for to add all q2
 				for (q2Result = 0; q2Result < arr.length; q2Result++) { // queue 1
 					if (arr[q2Result][2] == 2) {
-						document.getElementById("resultsTextArea").value += q2Result;
-						document.getElementById("resultsTextArea").value += "(";
-						document.getElementById("resultsTextArea").value += arr[q2Result][0];
-						document.getElementById("resultsTextArea").value += ", ";
-						document.getElementById("resultsTextArea").value += arr[q2Result][1];
-						document.getElementById("resultsTextArea").value += ") | ";
+						//if (arr[q2Result][2] == 2 && arr[q2Result][1] > 0 && arr[q2Result][0] < 1) {
+						console.log("Program : " + q2Result + " (" + arr[q2Result][0] + "," + arr[q2Result][1] + "," + arr[q2Result][3] + ")");
 					}
 				}
-				document.getElementById("resultsTextArea").value += "\n";
-				document.getElementById("resultsTextArea").value += "Q3 :";
+				//document.getElementById("resultsTextArea").value += "\n";
+				console.log("Q3 :");
 				// for to add all q3
 				for (q3Result = 0; q3Result < arr.length; q3Result++) { // queue 1
 					if (arr[q3Result][2] == 3) {
-						document.getElementById("resultsTextArea").value += q3Result;
-						document.getElementById("resultsTextArea").value += "(";
-						document.getElementById("resultsTextArea").value += arr[q3Result][0];
-						document.getElementById("resultsTextArea").value += ", ";
-						document.getElementById("resultsTextArea").value += arr[q3Result][1];
-						document.getElementById("resultsTextArea").value += ") | ";
+						// if (arr[q3Result][2] == 3 && arr[q3Result][1] > 0 && arr[q3Result][0] < 1) {
+						console.log("Program : " + q3Result + " (" + arr[q3Result][0] + "," + arr[q3Result][1] + "," + arr[q3Result][3] + ")");
 					}
 				}
-				document.getElementById("resultsTextArea").value += "\n";
-				document.getElementById("resultsTextArea").value += "======================================================================================";
-				document.getElementById("resultsTextArea").value += "\n\n";
+				//document.getElementById("resultsTextArea").value += "\n";
+				console.log("======================================================================================");
+				console.log("\n\n");
 				// RESET VALUES FOR NEXT ROUND
 				q1 = false;
 				q2 = false;
@@ -942,6 +941,7 @@
 		}
 	</script>
 </head>
+
 <body class="is-boxed has-animations">
 	<div class="body-wrap boxed-container">
 		<header class="site-header">
@@ -1010,8 +1010,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program A</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutA" id="programArrivalA" value="<?php echo $_SESSION['pr1'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutA" id="programExecutionA" value="<?php echo $_SESSION['pr1_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutA" id="programArrivalA"
+											value="<?php echo $_SESSION['pr1'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutA" id="programExecutionA"
+											value="<?php echo $_SESSION['pr1_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programB">
@@ -1040,8 +1044,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program B</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutB" id="programArrivalB" value="<?php echo $_SESSION['pr2'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutB" id="programExecutionB" value="<?php echo $_SESSION['pr2_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutB" id="programArrivalB"
+											value="<?php echo $_SESSION['pr2'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutB" id="programExecutionB"
+											value="<?php echo $_SESSION['pr2_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programC">
@@ -1075,8 +1083,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program C</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutC" id="programArrivalC" value="<?php echo $_SESSION['pr3'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutC" id="programExecutionC" value="<?php echo $_SESSION['pr3_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutC" id="programArrivalC"
+											value="<?php echo $_SESSION['pr3'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutC" id="programExecutionC"
+											value="<?php echo $_SESSION['pr3_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programD">
@@ -1105,8 +1117,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program D</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutD" id="programArrivalD" value="<?php echo $_SESSION['pr4'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutD" id="programExecutionD" value="<?php echo $_SESSION['pr4_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutD" id="programArrivalD"
+											value="<?php echo $_SESSION['pr4'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutD" id="programExecutionD"
+											value="<?php echo $_SESSION['pr4_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programE">
@@ -1139,8 +1155,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program E</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutE" id="programArrivalE" value="<?php echo $_SESSION['pr5'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutE" id="programExecutionE" value="<?php echo $_SESSION['pr5_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutE" id="programArrivalE"
+											value="<?php echo $_SESSION['pr5'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutE" id="programExecutionE"
+											value="<?php echo $_SESSION['pr5_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programF">
@@ -1169,8 +1189,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program F</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutF" id="programArrivalF" value="<?php echo $_SESSION['pr6'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutF" id="programExecutionF" value="<?php echo $_SESSION['pr6_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutF" id="programArrivalF"
+											value="<?php echo $_SESSION['pr6'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutF" id="programExecutionF"
+											value="<?php echo $_SESSION['pr6_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programG">
@@ -1199,8 +1223,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program G</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutG" id="programArrivalG" value="<?php echo $_SESSION['pr7'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutG" id="programExecutionG" value="<?php echo $_SESSION['pr7_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutG" id="programArrivalG"
+											value="<?php echo $_SESSION['pr7'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutG" id="programExecutionG"
+											value="<?php echo $_SESSION['pr7_l'];?>" /></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programH">
@@ -1234,8 +1262,12 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program H</h3>
-									<p class="text-sm mb-0" >Arrival time: <input type="text" readonly name="programArrivalOutH" id="programArrivalH" value="<?php echo $_SESSION['pr8'];?>"/></p>
-									<p class="text-sm mb-0" >Execution time: <input type="text" readonly name="programExecutionOutH" id="programExecutionH" value="<?php echo $_SESSION['pr8_l'];?>"/></p>
+									<p class="text-sm mb-0">Arrival time: <input type="text" readonly
+											name="programArrivalOutH" id="programArrivalH"
+											value="<?php echo $_SESSION['pr8'];?>" /></p>
+									<p class="text-sm mb-0">Execution time: <input type="text" readonly
+											name="programExecutionOutH" id="programExecutionH"
+											value="<?php echo $_SESSION['pr8_l'];?>" /></p>
 								</div>
 							</div>
 						</div>
@@ -1435,4 +1467,5 @@
 						<div class="media-header text-center">
 							<script src="dist/js/main.min.js"></script>
 </body>
+
 </html>
