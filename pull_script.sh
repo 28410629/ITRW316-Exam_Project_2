@@ -32,8 +32,8 @@ if [ "$BRANCH" != "master" ]
           # add code here to set what happens when not up to date
           echo -e ${ERROR}Not up to date with origin. Pulling.${NOCOLOR}
           git pull
-          rm -R /var/www/html/*
-          mv ./* /var/www/html/
+          rm -Rv /var/www/html/*
+          mv -v ./* /var/www/html/
           echo
           exit 0
         else
