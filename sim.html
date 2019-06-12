@@ -787,6 +787,19 @@
 			}
 			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
 			for (j = 1; j < 500; j++) {
+
+				for (c = 0; c < arr.length; c++) { // queue 1
+					if (arr[c][2] == 1) {
+						q1 = true;
+					}
+					if (arr[c][2] == 2) {
+						q2 = true;
+					}
+					if (arr[c][2] == 3) {
+						q3 = true;
+					}
+				}
+
 				// decrement current active queue!
 				if (q1) {
 					q1Time--;
