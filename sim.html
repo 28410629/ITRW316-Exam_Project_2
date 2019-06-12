@@ -908,7 +908,7 @@
 				for (q1Result = 0; q1Result < arr.length; q1Result++) { // queue 1
 					if (arr[q1Result][2] == 1) {
 						//if (arr[q1Result][2] == 1 && arr[q1Result][1] > 0 && arr[q1Result][0] < 1) {
-						document.getElementById("resultsTextArea").value += "Program-" + q1Result + " (" + arr[q1Result][1] + "); ";
+						document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q1Result+65) + " (" + arr[q1Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
@@ -917,7 +917,7 @@
 				for (q2Result = 0; q2Result < arr.length; q2Result++) { // queue 1
 					if (arr[q2Result][2] == 2) {
 						//if (arr[q2Result][2] == 2 && arr[q2Result][1] > 0 && arr[q2Result][0] < 1) {
-							document.getElementById("resultsTextArea").value += "Program-" + q2Result + " (" + arr[q2Result][1] + "); ";
+							document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q2Result+65) + " (" + arr[q2Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
@@ -926,7 +926,7 @@
 				for (q3Result = 0; q3Result < arr.length; q3Result++) { // queue 1
 					if (arr[q3Result][2] == 3) {
 						// if (arr[q3Result][2] == 3 && arr[q3Result][1] > 0 && arr[q3Result][0] < 1) {
-							document.getElementById("resultsTextArea").value += "Program-" + q3Result + " (" + arr[q3Result][1] + "); ";
+							document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q3Result+65) + " (" + arr[q3Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
