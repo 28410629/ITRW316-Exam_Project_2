@@ -1,6 +1,6 @@
 
 <?php
-  ehco '<p>php has started</p>';
+  echo 'php has started';
 
   $dbhost = '40.127.6.141';
   $dbuser = 'userMorne';
