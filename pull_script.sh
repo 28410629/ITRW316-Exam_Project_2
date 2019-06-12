@@ -33,7 +33,7 @@ if [ "$BRANCH" != "master" ]
           echo -e ${ERROR}Not up to date with origin. Pulling.${NOCOLOR}
           git pull
           rm -Rv /var/www/html/*
-          mv -v ./* /var/www/html/
+          cp -v ./* /var/www/html/
           echo
           exit 0
         else
