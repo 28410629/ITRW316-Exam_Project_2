@@ -741,8 +741,8 @@
 			var a; // decrement A
 			var b; // check arrivals
 			var c; // execution time queue 1
-			var d; // execution time queue 2
-			var e; // execution time queue 3
+			var d; // move program from queue 1 to queue 2
+			var e; // move program from queue 2 to queue 3
 			var f; // decrement execution time queue 1
 			var g; // decrement execution time queue 2
 			var h; // decrement execution time queue 3
@@ -762,6 +762,10 @@
 			var q1Time = q1T; 
 			var q2Time = q2T;
 			var q3Time = q3T;
+			// result for loop variables
+			var q1Result; 
+			var q2Result; 
+			var q3Result; 
 			// values from textboxes
 			var elements = ["programArrivalA","programExecutionA",
 							"programArrivalB","programExecutionB",
@@ -785,12 +789,14 @@
 			for (j = 0; j < 500; j++) {
 				// decrement current active queue!
 				if (q1) {
-					
+					q1Time--;
 				} else {
 					if (q2) {
-						
+						q2Time--;
 					} else {
-						
+						if (q3) {
+							q3Time--;
+						}
 					}
 				}
 				// decrement arrival time unit
@@ -845,13 +851,21 @@
 				}
 				// move programs to next queue!
 				if (q1) {
-					if (condition) {
-						
+					for (d = 0; d < array.length; d++) {
+						if (arr[b][0] == 1) {
+							arr[b][2] = 2;
+						}
 					}
 				} else {
 					if (q2) {
-						if (condition) {
-							
+						for (e = 0; e < array.length; e++) {
+							if (arr[b][0] == 2) {
+								arr[b][2] = 3;
+							}
+						}
+					} else {
+						if (q3) {
+							// do nothing!
 						}
 					}
 				}
@@ -863,10 +877,44 @@
 					}
 				}
 				// print time unit result 
-				document.getElementById("resultsTextArea").value += arr[j][0];
+				document.getElementById("resultsTextArea").value += "Time : ";
+				document.getElementById("resultsTextArea").value += j;
 				document.getElementById("resultsTextArea").value += "\n";
-				document.getElementById("resultsTextArea").value += arr[j][1];
+				document.getElementById("resultsTextArea").value += "Q1 :";
+				// for to add all q1
+				for (q1Result = 0; q1Result < arr.length; q1Result++) { // queue 1
+					if (arr[q1Result][2] == 1) {
+						document.getElementById("resultsTextArea").value += q1Result;
+						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q1Result][1];
+						document.getElementById("resultsTextArea").value += ") | ";
+					}
+				}
 				document.getElementById("resultsTextArea").value += "\n";
+				document.getElementById("resultsTextArea").value += "Q2 :";
+				// for to add all q2
+				for (q2Result = 0; q2Result < arr.length; q2Result++) { // queue 1
+					if (arr[q2Result][2] == 2) {
+						document.getElementById("resultsTextArea").value += q2Result;
+						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q2Result][1];
+						document.getElementById("resultsTextArea").value += ") | ";
+					}
+				}
+				document.getElementById("resultsTextArea").value += "\n";
+				document.getElementById("resultsTextArea").value += "Q3 :";
+				// for to add all q3
+				for (q3Result = 0; q3Result < arr.length; q3Result++) { // queue 1
+					if (arr[f][2] == 3) {
+						document.getElementById("resultsTextArea").value += q3Result;
+						document.getElementById("resultsTextArea").value += "(";
+						document.getElementById("resultsTextArea").value += arr[q3Result][1];
+						document.getElementById("resultsTextArea").value += ") | ";
+					}
+				}
+				document.getElementById("resultsTextArea").value += "\n";
+				document.getElementById("resultsTextArea").value += "======================================================================================";
+				document.getElementById("resultsTextArea").value += "\n\n";
 				// RESET VALUES FOR NEXT ROUND
 				q1 = false;
 				q2 = false;
