@@ -29,12 +29,12 @@
       die("Connection failed: " . $conn->connect_error);
 
 
-    $result = mysqli_query($conn,"SELECT * FROM programs");
+    $result = mysqli_query("SELECT * FROM programs", $conn);
 
 
-    while($row = mysqli_fetch_array($result))
+    while($row = mysqli_fetch_array($result, MYSQL_NUM))
     {
-      echo "<br>";
+      echo "ROW";
       echo "<p>" . $row[0] . "</p>";
       echo "<p>" . $row[1] . "</p>";
 
