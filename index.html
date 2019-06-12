@@ -1,412 +1,1141 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <?php
   session_start();
 ?>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ITRW316 Project 2 - Homepage</title>
-    <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Playfair+Display:700" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ITRW316 Project 2 - Homepage</title>
+	<link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Playfair+Display:700" rel="stylesheet">
+	<link rel="stylesheet" href="dist/css/style.css">
+	<script>
+		/*! @license ScrollReveal v4.0.0
+		
+			Copyright 2018 Fisssion LLC.
+		
+			Licensed under the GNU General Public License 3.0 for
+			compatible open source projects and non-commercial use.
+		
+			For commercial sites, themes, projects, and applications,
+			keep your source code private/proprietary by purchasing
+			a commercial license from https://scrollrevealjs.org/
+		*/
+		var ScrollReveal = function () {
+			"use strict";
+			var r = {
+				delay: 0,
+				distance: "0",
+				duration: 600,
+				easing: "cubic-bezier(0.5, 0, 0, 1)",
+				interval: 0,
+				opacity: 0,
+				origin: "bottom",
+				rotate: {
+					x: 0,
+					y: 0,
+					z: 0
+				},
+				scale: 1,
+				cleanup: !0,
+				container: document.documentElement,
+				desktop: !0,
+				mobile: !0,
+				reset: !1,
+				useDelay: "always",
+				viewFactor: 0,
+				viewOffset: {
+					top: 0,
+					right: 0,
+					bottom: 0,
+					left: 0
+				},
+				afterReset: function () { },
+				afterReveal: function () { },
+				beforeReset: function () { },
+				beforeReveal: function () { }
+			},
+				n = {
+					clean: function () { },
+					destroy: function () { },
+					reveal: function () { },
+					sync: function () { },
+					get noop() {
+						return !0
+					}
+				};
+
+			function o(e) {
+				return "object" == typeof window.Node ? e instanceof window.Node : null !== e && "object" == typeof e && "number" == typeof e.nodeType && "string" == typeof e.nodeName
+			}
+
+			function u(e, t) {
+				if (void 0 === t && (t = document), e instanceof Array) return e.filter(o);
+				if (o(e)) return [e];
+				if (n = e, i = Object.prototype.toString.call(n), "object" == typeof window.NodeList ? n instanceof window.NodeList : null !== n && "object" == typeof n && "number" == typeof n.length && /^\[object (HTMLCollection|NodeList|Object)\]$/.test(i) && (0 === n.length || o(n[0]))) return Array.prototype.slice.call(e);
+				var n, i;
+				if ("string" == typeof e) try {
+					var r = t.querySelectorAll(e);
+					return Array.prototype.slice.call(r)
+				} catch (e) {
+					return []
+				}
+				return []
+			}
+
+			function s(e) {
+				return null !== e && e instanceof Object && (e.constructor === Object || "[object Object]" === Object.prototype.toString.call(e))
+			}
+
+			function f(n, i) {
+				if (s(n)) return Object.keys(n).forEach(function (e) {
+					return i(n[e], e, n)
+				});
+				if (n instanceof Array) return n.forEach(function (e, t) {
+					return i(e, t, n)
+				});
+				throw new TypeError("Expected either an array or object literal.")
+			}
+
+			function h(e) {
+				for (var t = [], n = arguments.length - 1; 0 < n--;) t[n] = arguments[n + 1];
+				if (this.constructor.debug && console) {
+					var i = "%cScrollReveal: " + e;
+					t.forEach(function (e) {
+						return i += "\n — " + e
+					}), console.log(i, "color: #ea654b;")
+				}
+			}
+
+			function t() {
+				var n = this,
+					i = {
+						active: [],
+						stale: []
+					},
+					t = {
+						active: [],
+						stale: []
+					},
+					r = {
+						active: [],
+						stale: []
+					};
+				try {
+					f(u("[data-sr-id]"), function (e) {
+						var t = parseInt(e.getAttribute("data-sr-id"));
+						i.active.push(t)
+					})
+				} catch (e) {
+					throw e
+				}
+				f(this.store.elements, function (e) {
+					-1 === i.active.indexOf(e.id) && i.stale.push(e.id)
+				}), f(i.stale, function (e) {
+					return delete n.store.elements[e]
+				}), f(this.store.elements, function (e) {
+					-1 === r.active.indexOf(e.containerId) && r.active.push(e.containerId), e.hasOwnProperty("sequence") && -1 === t.active.indexOf(e.sequence.id) && t.active.push(e.sequence.id)
+				}), f(this.store.containers, function (e) {
+					-1 === r.active.indexOf(e.id) && r.stale.push(e.id)
+				}), f(r.stale, function (e) {
+					var t = n.store.containers[e].node;
+					t.removeEventListener("scroll", n.delegate), t.removeEventListener("resize", n.delegate), delete n.store.containers[e]
+				}), f(this.store.sequences, function (e) {
+					-1 === t.active.indexOf(e.id) && t.stale.push(e.id)
+				}), f(t.stale, function (e) {
+					return delete n.store.sequences[e]
+				})
+			}
+
+			function p(e) {
+				var i, r = this;
+				try {
+					f(u(e), function (e) {
+						var t = e.getAttribute("data-sr-id");
+						if (null !== t) {
+							i = !0;
+							var n = r.store.elements[t];
+							n.callbackTimer && window.clearTimeout(n.callbackTimer.clock), e.setAttribute("style", n.styles.inline.generated), e.removeAttribute("data-sr-id"), delete r.store.elements[t]
+						}
+					})
+				} catch (e) {
+					return h.call(this, "Clean failed.", e.message)
+				}
+				if (i) try {
+					t.call(this)
+				} catch (e) {
+					return h.call(this, "Clean failed.", e.message)
+				}
+			}
+
+			function N(e) {
+				if (e.constructor !== Array) throw new TypeError("Expected array.");
+				if (16 === e.length) return e;
+				if (6 === e.length) {
+					var t = z();
+					return t[0] = e[0], t[1] = e[1], t[4] = e[2], t[5] = e[3], t[12] = e[4], t[13] = e[5], t
+				}
+				throw new RangeError("Expected array with either 6 or 16 values.")
+			}
+
+			function z() {
+				for (var e = [], t = 0; t < 16; t++) t % 5 == 0 ? e.push(1) : e.push(0);
+				return e
+			}
+
+			function F(e, t) {
+				for (var n = N(e), i = N(t), r = [], o = 0; o < 4; o++)
+					for (var s = [n[o], n[o + 4], n[o + 8], n[o + 12]], a = 0; a < 4; a++) {
+						var c = 4 * a,
+							l = [i[c], i[c + 1], i[c + 2], i[c + 3]],
+							d = s[0] * l[0] + s[1] * l[1] + s[2] * l[2] + s[3] * l[3];
+						r[o + c] = d
+					}
+				return r
+			}
+
+			function D(e, t) {
+				var n = z();
+				return n[0] = e, n[5] = "number" == typeof t ? t : e, n
+			}
+			var S = function () {
+				var n = {},
+					i = document.documentElement.style;
+
+				function e(e, t) {
+					if (void 0 === t && (t = i), e && "string" == typeof e) {
+						if (n[e]) return n[e];
+						if ("string" == typeof t[e]) return n[e] = e;
+						if ("string" == typeof t["-webkit-" + e]) return n[e] = "-webkit-" + e;
+						throw new RangeError('Unable to find "' + e + '" style property.')
+					}
+					throw new TypeError("Expected a string.")
+				}
+				return e.clearCache = function () {
+					return n = {}
+				}, e
+			}();
+
+			function m(e) {
+				var t = window.getComputedStyle(e.node),
+					n = t.position,
+					i = e.config,
+					r = {},
+					o = (e.node.getAttribute("style") || "").match(/[\w-]+\s*:\s*[^;]+\s*/gi) || [];
+				r.computed = o ? o.map(function (e) {
+					return e.trim()
+				}).join("; ") + ";" : "", r.generated = o.some(function (e) {
+					return e.match(/visibility\s?:\s?visible/i)
+				}) ? r.computed : o.concat(["visibility: visible"]).map(function (e) {
+					return e.trim()
+				}).join("; ") + ";";
+				var s, a, c, l, d, u, f, h, p, m, y, v, g, b = parseFloat(t.opacity),
+					w = isNaN(parseFloat(i.opacity)) ? parseFloat(t.opacity) : parseFloat(i.opacity),
+					E = {
+						computed: b !== w ? "opacity: " + b + ";" : "",
+						generated: b !== w ? "opacity: " + w + ";" : ""
+					},
+					j = [];
+				if (parseFloat(i.distance)) {
+					var T = "top" === i.origin || "bottom" === i.origin ? "Y" : "X",
+						O = i.distance;
+					"top" !== i.origin && "left" !== i.origin || (O = /^-/.test(O) ? O.substr(1) : "-" + O);
+					var k = O.match(/(^-?\d+\.?\d?)|(em$|px$|%$)/g),
+						x = k[0];
+					switch (k[1]) {
+						case "em":
+							O = parseInt(t.fontSize) * x;
+							break;
+						case "px":
+							O = x;
+							break;
+						case "%":
+							O = "Y" === T ? e.node.getBoundingClientRect().height * x / 100 : e.node.getBoundingClientRect().width * x / 100;
+							break;
+						default:
+							throw new RangeError("Unrecognized or missing distance unit.")
+					}
+					"Y" === T ? j.push((c = O, (l = z())[13] = c, l)) : j.push((s = O, (a = z())[12] = s, a))
+				}
+				i.rotate.x && j.push((d = i.rotate.x, u = Math.PI / 180 * d, (f = z())[5] = f[10] = Math.cos(u), f[6] = f[9] = Math.sin(u), f[9] *= -1, f)), i.rotate.y && j.push((h = i.rotate.y, p = Math.PI / 180 * h, (m = z())[0] = m[10] = Math.cos(p), m[2] = m[8] = Math.sin(p), m[2] *= -1, m)), i.rotate.z && j.push((y = i.rotate.z, v = Math.PI / 180 * y, (g = z())[0] = g[5] = Math.cos(v), g[1] = g[4] = Math.sin(v), g[4] *= -1, g)), 1 !== i.scale && (0 === i.scale ? j.push(D(2e-4)) : j.push(D(i.scale)));
+				var A = {};
+				if (j.length) {
+					A.property = S("transform"), A.computed = {
+						raw: t[A.property],
+						matrix: function (e) {
+							if ("string" == typeof e) {
+								var t = e.match(/matrix(3d)?\(([^)]+)\)/);
+								if (t) return N(t[2].split(", ").map(parseFloat))
+							}
+							return z()
+						}(t[A.property])
+					}, j.unshift(A.computed.matrix);
+					var R = j.reduce(F);
+					A.generated = {
+						initial: A.property + ": matrix3d(" + R.join(", ") + ");",
+						final: A.property + ": matrix3d(" + A.computed.matrix.join(", ") + ");"
+					}
+				} else A.generated = {
+					initial: "",
+					final: ""
+				};
+				var q = {};
+				if (E.generated || A.generated.initial) {
+					q.property = S("transition"), q.computed = t[q.property], q.fragments = [];
+					var P = i.delay,
+						I = i.duration,
+						L = i.easing;
+					E.generated && q.fragments.push({
+						delayed: "opacity " + I / 1e3 + "s " + L + " " + P / 1e3 + "s",
+						instant: "opacity " + I / 1e3 + "s " + L + " 0s"
+					}), A.generated.initial && q.fragments.push({
+						delayed: A.property + " " + I / 1e3 + "s " + L + " " + P / 1e3 + "s",
+						instant: A.property + " " + I / 1e3 + "s " + L + " 0s"
+					}), q.computed && !q.computed.match(/all 0s/) && q.fragments.unshift({
+						delayed: q.computed,
+						instant: q.computed
+					});
+					var M = q.fragments.reduce(function (e, t, n) {
+						return e.delayed += 0 === n ? t.delayed : ", " + t.delayed, e.instant += 0 === n ? t.instant : ", " + t.instant, e
+					}, {
+							delayed: "",
+							instant: ""
+						});
+					q.generated = {
+						delayed: q.property + ": " + M.delayed + ";",
+						instant: q.property + ": " + M.instant + ";"
+					}
+				} else q.generated = {
+					delayed: "",
+					instant: ""
+				};
+				return {
+					inline: r,
+					opacity: E,
+					position: n,
+					transform: A,
+					transition: q
+				}
+			}
+
+			function c(e, t) {
+				void 0 === t && (t = {});
+				var n = t.pristine || this.pristine,
+					i = "always" === e.config.useDelay || "onload" === e.config.useDelay && n || "once" === e.config.useDelay && !e.seen,
+					r = e.visible && !e.revealed,
+					o = !e.visible && e.revealed && e.config.reset;
+				return t.reveal || r ? function (e, t) {
+					var n = [e.styles.inline.generated, e.styles.opacity.computed, e.styles.transform.generated.final];
+					t ? n.push(e.styles.transition.generated.delayed) : n.push(e.styles.transition.generated.instant);
+					e.revealed = e.seen = !0, e.node.setAttribute("style", n.filter(function (e) {
+						return "" !== e
+					}).join(" ")), a.call(this, e, t)
+				}.call(this, e, i) : t.reset || o ? function (e) {
+					var t = [e.styles.inline.generated, e.styles.opacity.generated, e.styles.transform.generated.initial, e.styles.transition.generated.instant];
+					e.revealed = !1, e.node.setAttribute("style", t.filter(function (e) {
+						return "" !== e
+					}).join(" ")), a.call(this, e)
+				}.call(this, e) : void 0
+			}
+
+			function a(e, t) {
+				var n = this,
+					i = t ? e.config.duration + e.config.delay : e.config.duration,
+					r = e.revealed ? e.config.beforeReveal : e.config.beforeReset,
+					o = e.revealed ? e.config.afterReveal : e.config.afterReset,
+					s = 0;
+				e.callbackTimer && (s = Date.now() - e.callbackTimer.start, window.clearTimeout(e.callbackTimer.clock)), r(e.node), e.callbackTimer = {
+					start: Date.now(),
+					clock: window.setTimeout(function () {
+						o(e.node), e.callbackTimer = null, e.revealed && !e.config.reset && e.config.cleanup && p.call(n, e.node)
+					}, i - s)
+				}
+			}
+			var e, y = (e = 0, function () {
+				return e++
+			});
+
+			function l(e, t) {
+				if (void 0 === t && (t = this.pristine), !e.visible && e.revealed && e.config.reset) return c.call(this, e, {
+					reset: !0
+				});
+				var n = this.store.sequences[e.sequence.id],
+					i = e.sequence.index;
+				if (n) {
+					var r = new d(n, "visible", this.store),
+						o = new d(n, "revealed", this.store);
+					if (n.models = {
+						visible: r,
+						revealed: o
+					}, !o.body.length) {
+						var s = n.members[r.body[0]],
+							a = this.store.elements[s];
+						if (a) return g.call(this, n, r.body[0], -1, t), g.call(this, n, r.body[0], 1, t), c.call(this, a, {
+							reveal: !0,
+							pristine: t
+						})
+					}
+					if (!n.blocked.head && i === [].concat(o.head).pop() && i >= [].concat(r.body).shift()) return g.call(this, n, i, -1, t), c.call(this, e, {
+						reveal: !0,
+						pristine: t
+					});
+					if (!n.blocked.foot && i === [].concat(o.foot).shift() && i <= [].concat(r.body).pop()) return g.call(this, n, i, 1, t), c.call(this, e, {
+						reveal: !0,
+						pristine: t
+					})
+				}
+			}
+
+			function v(e) {
+				var t = Math.abs(e);
+				if (isNaN(t)) throw new RangeError("Invalid sequence interval.");
+				this.id = y(), this.interval = Math.max(t, 16), this.members = [], this.models = {}, this.blocked = {
+					head: !1,
+					foot: !1
+				}
+			}
+
+			function d(e, i, r) {
+				var o = this;
+				this.head = [], this.body = [], this.foot = [], f(e.members, function (e, t) {
+					var n = r.elements[e];
+					n && n[i] && o.body.push(t)
+				}), this.body.length && f(e.members, function (e, t) {
+					var n = r.elements[e];
+					n && !n[i] && (t < o.body[0] ? o.head.push(t) : o.foot.push(t))
+				})
+			}
+
+			function g(e, t, n, i) {
+				var r = this,
+					o = ["head", null, "foot"][1 + n],
+					s = e.members[t + n],
+					a = this.store.elements[s];
+				e.blocked[o] = !0, setTimeout(function () {
+					e.blocked[o] = !1, a && l.call(r, a, i)
+				}, e.interval)
+			}
+
+			function b() {
+				var n = this;
+				t.call(this), f(this.store.elements, function (e) {
+					var t = [e.styles.inline.generated];
+					e.visible ? (t.push(e.styles.opacity.computed), t.push(e.styles.transform.generated.final)) : (t.push(e.styles.opacity.generated), t.push(e.styles.transform.generated.initial)), e.node.setAttribute("style", t.filter(function (e) {
+						return "" !== e
+					}).join(" "))
+				}), f(this.store.containers, function (e) {
+					var t = e.node === document.documentElement ? window : e.node;
+					t.addEventListener("scroll", n.delegate), t.addEventListener("resize", n.delegate)
+				}), this.delegate(), this.initTimeout = null
+			}
+
+			function w(e) {
+				return void 0 === e && (e = navigator.userAgent), /Android|iPhone|iPad|iPod/i.test(e)
+			}
+
+			function E(n) {
+				for (var e = [], t = arguments.length - 1; 0 < t--;) e[t] = arguments[t + 1];
+				if (s(n)) return f(e, function (e) {
+					f(e, function (e, t) {
+						s(e) ? (n[t] && s(n[t]) || (n[t] = {}), E(n[t], e)) : n[t] = e
+					})
+				}), n;
+				throw new TypeError("Target must be an object literal.")
+			}
+
+			function i(e, a, t) {
+				var c = this;
+				void 0 === a && (a = {}), void 0 === t && (t = !1);
+				var l, d = [],
+					n = a.interval || r.interval;
+				try {
+					n && (l = new v(n));
+					var i = u(e);
+					if (!i.length) throw new Error("Invalid reveal target.");
+					f(i.reduce(function (e, t) {
+						var n = {},
+							i = t.getAttribute("data-sr-id");
+						i ? (E(n, c.store.elements[i]), n.node.setAttribute("style", n.styles.inline.computed)) : (n.id = y(), n.node = t, n.seen = !1, n.revealed = !1, n.visible = !1);
+						var r = E({}, n.config || c.defaults, a);
+						if (!r.mobile && w() || !r.desktop && !w()) return i && p.call(c, n), e;
+						var o, s = u(r.container)[0];
+						if (!s) throw new Error("Invalid container.");
+						return s.contains(t) && (null === (o = function (t) {
+							var e = [],
+								n = arguments.length - 1;
+							for (; 0 < n--;) e[n] = arguments[n + 1];
+							var i = null;
+							return f(e, function (e) {
+								f(e, function (e) {
+									null === i && e.node === t && (i = e.id)
+								})
+							}), i
+						}(s, d, c.store.containers)) && (o = y(), d.push({
+							id: o,
+							node: s
+						})), n.config = r, n.containerId = o, n.styles = m(n), l && (n.sequence = {
+							id: l.id,
+							index: l.members.length
+						}, l.members.push(n.id)), e.push(n)), e
+					}, []), function (e) {
+						(c.store.elements[e.id] = e).node.setAttribute("data-sr-id", e.id)
+					})
+				} catch (e) {
+					return h.call(this, "Reveal failed.", e.message)
+				}
+				f(d, function (e) {
+					c.store.containers[e.id] = {
+						id: e.id,
+						node: e.node
+					}
+				}), l && (this.store.sequences[l.id] = l), !0 !== t && (this.store.history.push({
+					target: e,
+					options: a
+				}), this.initTimeout && window.clearTimeout(this.initTimeout), this.initTimeout = window.setTimeout(b.bind(this), 0))
+			}
+			var j, T = Math.sign || function (e) {
+				return (0 < e) - (e < 0) || +e
+			},
+				O = (j = Date.now(), function (e) {
+					var t = Date.now();
+					16 < t - j ? e(j = t) : setTimeout(function () {
+						return O(e)
+					}, 0)
+				}),
+				k = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || O;
+
+			function x(e, t) {
+				for (var n = t ? e.node.clientHeight : e.node.offsetHeight, i = t ? e.node.clientWidth : e.node.offsetWidth, r = 0, o = 0, s = e.node; isNaN(s.offsetTop) || (r += s.offsetTop), isNaN(s.offsetLeft) || (o += s.offsetLeft), s = s.offsetParent;);
+				return {
+					bounds: {
+						top: r,
+						right: o + i,
+						bottom: r + n,
+						left: o
+					},
+					height: n,
+					width: i
+				}
+			}
+
+			function A(e, t) {
+				var i = this;
+				void 0 === e && (e = {
+					type: "init"
+				}), void 0 === t && (t = this.store.elements), k(function () {
+					var n = "init" === e.type || "resize" === e.type;
+					f(i.store.containers, function (e) {
+						n && (e.geometry = x.call(i, e, !0));
+						var t = function (e) {
+							var t, n;
+							return e.node === document.documentElement ? (t = window.pageYOffset, n = window.pageXOffset) : (t = e.node.scrollTop, n = e.node.scrollLeft), {
+								top: t,
+								left: n
+							}
+						}.call(i, e);
+						e.scroll && (e.direction = {
+							x: T(t.left - e.scroll.left),
+							y: T(t.top - e.scroll.top)
+						}), e.scroll = t
+					}), f(t, function (e) {
+						n && (e.geometry = x.call(i, e)), e.visible = function (e) {
+							void 0 === e && (e = {});
+							var t = this.store.containers[e.containerId];
+							if (t) {
+								var n = Math.max(0, Math.min(1, e.config.viewFactor)),
+									i = e.config.viewOffset,
+									r = e.geometry.bounds.top + e.geometry.height * n,
+									o = e.geometry.bounds.right - e.geometry.width * n,
+									s = e.geometry.bounds.bottom - e.geometry.height * n,
+									a = e.geometry.bounds.left + e.geometry.width * n,
+									c = t.geometry.bounds.top + t.scroll.top + i.top,
+									l = t.geometry.bounds.right + t.scroll.left - i.right,
+									d = t.geometry.bounds.bottom + t.scroll.top - i.bottom,
+									u = t.geometry.bounds.left + t.scroll.left + i.left;
+								return r < d && u < o && c < s && a < l || "fixed" === e.styles.position
+							}
+						}.call(i, e)
+					}), f(t, function (e) {
+						e.sequence ? l.call(i, e) : c.call(i, e)
+					}), i.pristine = !1
+				})
+			}
+			var R, q, P, I, L, M, C, W, Y = "4.0.0";
+
+			function $(e) {
+				var t;
+				if (void 0 === e && (e = {}), void 0 === this || Object.getPrototypeOf(this) !== $.prototype) return new $(e);
+				if (!$.isSupported()) return h.call(this, "Instantiation failed.", "This browser is not supported."), n;
+				try {
+					t = E({}, M || r, e)
+				} catch (e) {
+					return h.call(this, "Instantiation failed.", "Invalid configuration.", e.message), n
+				}
+				try {
+					if (!u(t.container)[0]) throw new Error("Invalid container.");
+					if (!t.mobile && w() || !t.desktop && !w()) throw new Error("This device is disabled.")
+				} catch (e) {
+					return h.call(this, "Instantiation failed.", e.message), n
+				}
+				return M = t, document.documentElement.classList.add("sr"), document.body ? document.body.style.height = "100%" : document.addEventListener("DOMContentLoaded", function () {
+					document.body.style.height = "100%"
+				}), this.store = {
+					containers: {},
+					elements: {},
+					history: [],
+					sequences: {}
+				}, this.pristine = !0, R = R || A.bind(this), q = q || function () {
+					var n = this;
+					f(this.store.elements, function (e) {
+						e.node.setAttribute("style", e.styles.inline.generated), e.node.removeAttribute("data-sr-id")
+					}), f(this.store.containers, function (e) {
+						var t = e.node === document.documentElement ? window : e.node;
+						t.removeEventListener("scroll", n.delegate), t.removeEventListener("resize", n.delegate)
+					}), this.store = {
+						containers: {},
+						elements: {},
+						history: [],
+						sequences: {}
+					}
+				}.bind(this), P = P || i.bind(this), I = I || p.bind(this), L = L || function () {
+					var t = this;
+					f(this.store.history, function (e) {
+						i.call(t, e.target, e.options, !0)
+					}), b.call(this)
+				}.bind(this), Object.defineProperty(this, "delegate", {
+					get: function () {
+						return R
+					}
+				}), Object.defineProperty(this, "destroy", {
+					get: function () {
+						return q
+					}
+				}), Object.defineProperty(this, "reveal", {
+					get: function () {
+						return P
+					}
+				}), Object.defineProperty(this, "clean", {
+					get: function () {
+						return I
+					}
+				}), Object.defineProperty(this, "sync", {
+					get: function () {
+						return L
+					}
+				}), Object.defineProperty(this, "defaults", {
+					get: function () {
+						return M
+					}
+				}), Object.defineProperty(this, "version", {
+					get: function () {
+						return Y
+					}
+				}), Object.defineProperty(this, "noop", {
+					get: function () {
+						return !1
+					}
+				}), W || (W = this)
+			}
+			return $.isSupported = function () {
+				return ("transform" in (t = document.documentElement.style) || "WebkitTransform" in t) && ("transition" in (e = document.documentElement.style) || "WebkitTransition" in e);
+				var e, t
+			}, Object.defineProperty($, "debug", {
+				get: function () {
+					return C || !1
+				},
+				set: function (e) {
+					return C = "boolean" == typeof e ? e : C
+				}
+			}), $(), $
+		}();
+	</script>
 </head>
 
 <body class="is-boxed has-animations">
-    <div class="body-wrap boxed-container">
-        <header class="site-header">
-            <div class="container">
-                <div class="site-header-inner">
-                    <div class="brand header-brand">
-                        <h1 class="m-0">
-                            <a href="#">
+	<div class="body-wrap boxed-container">
+		<header class="site-header">
+			<div class="container">
+				<div class="site-header-inner">
+					<div class="brand header-brand">
+						<h1 class="m-0">
+							<a href="#">
 								<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
 									<title>Laurel</title>
-								    <defs>
-								        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="logo-a">
-								            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-								            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-								        </linearGradient>
-								        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="logo-b">
-								            <stop stop-color="#FDFFDA" offset="0%"/>
-								            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-								            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								    </defs>
-								    <g fill="none" fill-rule="evenodd">
-								        <path d="M22 19.22c6.627 0 9.593-6.415 9.593-13.042C31.593-.45 28.627.007 22 .007S10 2.683 10 9.31c0 6.628 5.373 9.91 12 9.91z" fill="url(#logo-a)"/>
-								        <path d="M13.666 31.889c7.547 0 10.924-7.307 10.924-14.854 0-7.547-3.377-7.027-10.924-7.027C6.118 10.008 0 13.055 0 20.603c0 7.547 6.118 11.286 13.666 11.286z" fill="url(#logo-b)" transform="matrix(-1 0 0 1 24.59 0)"/>
-								    </g>
+									<defs>
+										<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="logo-a">
+											<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+											<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+										</linearGradient>
+										<linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="logo-b">
+											<stop stop-color="#FDFFDA" offset="0%" />
+											<stop stop-color="#F97059" stop-opacity=".798" offset="49.935%" />
+											<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+										</linearGradient>
+									</defs>
+									<g fill="none" fill-rule="evenodd">
+										<path
+											d="M22 19.22c6.627 0 9.593-6.415 9.593-13.042C31.593-.45 28.627.007 22 .007S10 2.683 10 9.31c0 6.628 5.373 9.91 12 9.91z"
+											fill="url(#logo-a)" />
+										<path
+											d="M13.666 31.889c7.547 0 10.924-7.307 10.924-14.854 0-7.547-3.377-7.027-10.924-7.027C6.118 10.008 0 13.055 0 20.603c0 7.547 6.118 11.286 13.666 11.286z"
+											fill="url(#logo-b)" transform="matrix(-1 0 0 1 24.59 0)" />
+									</g>
 								</svg>
-                            </a>
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <section class="hero">
-                <div class="container">
-                    <div class="hero-inner">
+							</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section class="hero">
+				<div class="container">
+					<div class="hero-inner">
 						<div class="hero-copy">
 							<h1 class="hero-title mt-0">ITRW 316 : Project 2</h1>
 							<div>Coenraad Human : 28410629</div>
 							<div>Eon Viljoen : 28807995</div>
 							<p>Morne Venter : 28634748</p>
 							<h3 class="feature-title mt-24">Project Details</h3>
-							<p>&bullet; Write a web system that ask the user for information on a number of processes, the arrival time as well as how long each process should execute.</p>
+							<p>&bullet; Write a web system that ask the user for information on a number of processes,
+								the arrival time as well as how long each process should execute.</p>
 							<p>&bullet; Save this data in a database on the web server.</p>
-							<p>&bullet; On another page the user should be able to set three "sliders" to indicate the time quantum of each queue in multiple queue scheduling.</p>
-							<p>&bullet; Queue one is shorter or equal to queue two and queue two is shorter or equal to queue three.</p>
-							<p>&bullet; Show the multiple queue scheduling of the processes (as saved in the table) using these time quantum values.</p>
-	                        <div class="hero-cta"><a class="button button-shadow" href="https://github.com/coenraadhuman/ITRW316-Exam_Project_2">Private Github Repository</a></div>
+							<p>&bullet; On another page the user should be able to set three "sliders" to indicate the
+								time quantum of each queue in multiple queue scheduling.</p>
+							<p>&bullet; Queue one is shorter or equal to queue two and queue two is shorter or equal to
+								queue three.</p>
+							<p>&bullet; Show the multiple queue scheduling of the processes (as saved in the table)
+								using these time quantum values.</p>
+							<div class="hero-cta"><a class="button button-shadow"
+									href="https://github.com/coenraadhuman/ITRW316-Exam_Project_2">Private Github
+									Repository</a></div>
 						</div>
 						<div class="hero-app">
 							<div class="hero-app-illustration">
 								<svg width="999" height="931" xmlns="http://www.w3.org/2000/svg">
-								    <defs>
-								        <linearGradient x1="92.827%" y1="0%" x2="53.422%" y2="80.087%" id="hero-shape-a">
-								            <stop stop-color="#F9425F" offset="0%"/>
-								            <stop stop-color="#F97C58" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								        <linearGradient x1="92.827%" y1="0%" x2="53.406%" y2="80.12%" id="hero-shape-b">
-								            <stop stop-color="#47A1F9" offset="0%"/>
-								            <stop stop-color="#F9425F" stop-opacity="0" offset="80.532%"/>
-								            <stop stop-color="#FDFFDA" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								        <linearGradient x1="8.685%" y1="23.733%" x2="85.808%" y2="82.837%" id="hero-shape-c">
-								            <stop stop-color="#FFF" stop-opacity=".48" offset="0%"/>
-								            <stop stop-color="#FFF" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								        <linearGradient x1="79.483%" y1="15.903%" x2="38.42%" y2="70.124%" id="hero-shape-d">
-								            <stop stop-color="#47A1F9" offset="0%"/>
-								            <stop stop-color="#FDFFDA" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								        <linearGradient x1="99.037%" y1="26.963%" x2="24.582%" y2="78.557%" id="hero-shape-e">
-								            <stop stop-color="#FDFFDA" stop-opacity=".64" offset="0%"/>
-								            <stop stop-color="#F97C58" stop-opacity=".24" offset="42.952%"/>
-								            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-								        </linearGradient>
-								    </defs>
-								    <g fill="none" fill-rule="evenodd">
-								        <g class="hero-shape-top">
+									<defs>
+										<linearGradient x1="92.827%" y1="0%" x2="53.422%" y2="80.087%"
+											id="hero-shape-a">
+											<stop stop-color="#F9425F" offset="0%" />
+											<stop stop-color="#F97C58" stop-opacity="0" offset="100%" />
+										</linearGradient>
+										<linearGradient x1="92.827%" y1="0%" x2="53.406%" y2="80.12%" id="hero-shape-b">
+											<stop stop-color="#47A1F9" offset="0%" />
+											<stop stop-color="#F9425F" stop-opacity="0" offset="80.532%" />
+											<stop stop-color="#FDFFDA" stop-opacity="0" offset="100%" />
+										</linearGradient>
+										<linearGradient x1="8.685%" y1="23.733%" x2="85.808%" y2="82.837%"
+											id="hero-shape-c">
+											<stop stop-color="#FFF" stop-opacity=".48" offset="0%" />
+											<stop stop-color="#FFF" stop-opacity="0" offset="100%" />
+										</linearGradient>
+										<linearGradient x1="79.483%" y1="15.903%" x2="38.42%" y2="70.124%"
+											id="hero-shape-d">
+											<stop stop-color="#47A1F9" offset="0%" />
+											<stop stop-color="#FDFFDA" stop-opacity="0" offset="100%" />
+										</linearGradient>
+										<linearGradient x1="99.037%" y1="26.963%" x2="24.582%" y2="78.557%"
+											id="hero-shape-e">
+											<stop stop-color="#FDFFDA" stop-opacity=".64" offset="0%" />
+											<stop stop-color="#F97C58" stop-opacity=".24" offset="42.952%" />
+											<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+										</linearGradient>
+									</defs>
+									<g fill="none" fill-rule="evenodd">
+										<g class="hero-shape-top">
 											<g class="is-moving-object is-translating" data-translating-factor="280">
-								            	<path d="M680.188 0c-23.36 69.79-58.473 98.3-105.34 85.531-70.301-19.152-189.723-21.734-252.399 91.442-62.676 113.175-144.097 167.832-215.195 118.57C59.855 262.702 24.104 287.85 0 370.988L306.184 566.41c207.164-4.242 305.67-51.612 295.52-142.11-10.152-90.497 34.533-163.55 134.054-219.16l4.512-119.609L680.188 0z" fill="url(#hero-shape-a)" transform="translate(1)"/>
+												<path
+													d="M680.188 0c-23.36 69.79-58.473 98.3-105.34 85.531-70.301-19.152-189.723-21.734-252.399 91.442-62.676 113.175-144.097 167.832-215.195 118.57C59.855 262.702 24.104 287.85 0 370.988L306.184 566.41c207.164-4.242 305.67-51.612 295.52-142.11-10.152-90.497 34.533-163.55 134.054-219.16l4.512-119.609L680.188 0z"
+													fill="url(#hero-shape-a)" transform="translate(1)" />
 											</g>
 											<g class="is-moving-object is-translating" data-translating-factor="100">
-												<path d="M817.188 222c-23.36 69.79-58.473 98.3-105.34 85.531-70.301-19.152-189.723-21.734-252.399 91.442-62.676 113.175-144.097 167.832-215.195 118.57-47.399-32.841-83.15-7.693-107.254 75.445L443.184 788.41c207.164-4.242 305.67-51.612 295.52-142.11-10.152-90.497 34.533-163.55 134.054-219.16l4.512-119.609L817.188 222z" fill="url(#hero-shape-b)" transform="rotate(-53 507.635 504.202)"/>
-											</g>
-								        </g>
-								        <g transform="translate(191 416)">
-											<g class="is-moving-object is-translating" data-translating-factor="50">
-								            	<circle fill="url(#hero-shape-c)" cx="336" cy="190" r="190"/>
-											</g>
-											<g class="is-moving-object is-translating" data-translating-factor="80">
-								            	<path d="M683.766 133.043c-112.048-90.805-184.688-76.302-217.92 43.508-33.23 119.81-125.471 124.8-276.722 14.972-3.156 120.356 53.893 200.09 171.149 239.203 175.882 58.67 346.695-130.398 423.777-239.203 51.388-72.536 17.96-92.03-100.284-58.48z" fill="url(#hero-shape-d)"/>
-											</g>
-											<g class="is-moving-object is-translating" data-translating-factor="100">
-												<path d="M448.206 223.247c-97.52-122.943-154.274-117.426-170.26 16.55C261.958 373.775 169.717 378.766 1.222 254.77c-9.255 95.477 47.794 175.211 171.148 239.203 185.032 95.989 424.986-180.108 424.986-239.203 0-39.396-49.717-49.904-149.15-31.523z" fill="url(#hero-shape-e)" transform="matrix(-1 0 0 1 597.61 0)"/>
+												<path
+													d="M817.188 222c-23.36 69.79-58.473 98.3-105.34 85.531-70.301-19.152-189.723-21.734-252.399 91.442-62.676 113.175-144.097 167.832-215.195 118.57-47.399-32.841-83.15-7.693-107.254 75.445L443.184 788.41c207.164-4.242 305.67-51.612 295.52-142.11-10.152-90.497 34.533-163.55 134.054-219.16l4.512-119.609L817.188 222z"
+													fill="url(#hero-shape-b)" transform="rotate(-53 507.635 504.202)" />
 											</g>
 										</g>
-								    </g>
+										<g transform="translate(191 416)">
+											<g class="is-moving-object is-translating" data-translating-factor="50">
+												<circle fill="url(#hero-shape-c)" cx="336" cy="190" r="190" />
+											</g>
+											<g class="is-moving-object is-translating" data-translating-factor="80">
+												<path
+													d="M683.766 133.043c-112.048-90.805-184.688-76.302-217.92 43.508-33.23 119.81-125.471 124.8-276.722 14.972-3.156 120.356 53.893 200.09 171.149 239.203 175.882 58.67 346.695-130.398 423.777-239.203 51.388-72.536 17.96-92.03-100.284-58.48z"
+													fill="url(#hero-shape-d)" />
+											</g>
+											<g class="is-moving-object is-translating" data-translating-factor="100">
+												<path
+													d="M448.206 223.247c-97.52-122.943-154.274-117.426-170.26 16.55C261.958 373.775 169.717 378.766 1.222 254.77c-9.255 95.477 47.794 175.211 171.148 239.203 185.032 95.989 424.986-180.108 424.986-239.203 0-39.396-49.717-49.904-149.15-31.523z"
+													fill="url(#hero-shape-e)" transform="matrix(-1 0 0 1 597.61 0)" />
+											</g>
+										</g>
+									</g>
 								</svg>
 							</div>
 							<img class="device-mockup" src="dist/images/iphone-mockup.png" alt="App preview">
-                            <div class="hero-app-dots hero-app-dots-1">
+							<div class="hero-app-dots hero-app-dots-1">
 								<svg width="124" height="75" xmlns="http://www.w3.org/2000/svg">
-								    <g fill="none" fill-rule="evenodd">
-								        <path fill="#FFF" d="M33.392 0l3.624 1.667.984 3.53-1.158 3.36L33.392 10l-3.249-1.639L28 5.196l1.62-3.674z"/>
-								        <path fill="#7487A3" d="M74.696 3l1.812.833L77 5.598l-.579 1.68L74.696 8l-1.624-.82L72 5.599l.81-1.837z"/>
-								        <path fill="#556B8B" d="M40.696 70l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L38 72.599l.81-1.837z"/>
-								        <path fill="#7487A3" d="M4.314 37l2.899 1.334L8 41.157l-.926 2.688L4.314 45l-2.6-1.31L0 41.156l1.295-2.94zM49.314 32l2.899 1.334.787 2.823-.926 2.688L49.314 40l-2.6-1.31L45 36.156l1.295-2.94z"/>
-								        <path fill="#556B8B" d="M99.696 56l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L97 58.599l.81-1.837zM112.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L110 39.599l.81-1.837zM82.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L80 39.599l.81-1.837zM122.618 57l1.087.5.295 1.059-.347 1.008-1.035.433-.975-.492-.643-.95.486-1.101z"/>
-								    </g>
+									<g fill="none" fill-rule="evenodd">
+										<path fill="#FFF"
+											d="M33.392 0l3.624 1.667.984 3.53-1.158 3.36L33.392 10l-3.249-1.639L28 5.196l1.62-3.674z" />
+										<path fill="#7487A3"
+											d="M74.696 3l1.812.833L77 5.598l-.579 1.68L74.696 8l-1.624-.82L72 5.599l.81-1.837z" />
+										<path fill="#556B8B"
+											d="M40.696 70l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L38 72.599l.81-1.837z" />
+										<path fill="#7487A3"
+											d="M4.314 37l2.899 1.334L8 41.157l-.926 2.688L4.314 45l-2.6-1.31L0 41.156l1.295-2.94zM49.314 32l2.899 1.334.787 2.823-.926 2.688L49.314 40l-2.6-1.31L45 36.156l1.295-2.94z" />
+										<path fill="#556B8B"
+											d="M99.696 56l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L97 58.599l.81-1.837zM112.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L110 39.599l.81-1.837zM82.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L80 39.599l.81-1.837zM122.618 57l1.087.5.295 1.059-.347 1.008-1.035.433-.975-.492-.643-.95.486-1.101z" />
+									</g>
 								</svg>
-                            </div>
+							</div>
 							<div class="hero-app-dots hero-app-dots-2">
 								<svg width="124" height="75" xmlns="http://www.w3.org/2000/svg">
-								    <g fill="none" fill-rule="evenodd">
-								        <path fill="#556B8B" d="M33.392 0l3.624 1.667.984 3.53-1.158 3.36L33.392 10l-3.249-1.639L28 5.196l1.62-3.674zM74.696 3l1.812.833L77 5.598l-.579 1.68L74.696 8l-1.624-.82L72 5.599l.81-1.837zM40.696 70l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L38 72.599l.81-1.837zM4.314 37l2.899 1.334L8 41.157l-.926 2.688L4.314 45l-2.6-1.31L0 41.156l1.295-2.94zM49.314 32l2.899 1.334.787 2.823-.926 2.688L49.314 40l-2.6-1.31L45 36.156l1.295-2.94z"/>
-								        <path fill="#FFF" d="M99.696 56l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L97 58.599l.81-1.837z"/>
-								        <path fill="#556B8B" d="M112.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L110 39.599l.81-1.837z"/>
-								        <path fill="#FFF" d="M82.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L80 39.599l.81-1.837z"/>
-								        <path fill="#556B8B" d="M122.618 57l1.087.5.295 1.059-.347 1.008-1.035.433-.975-.492-.643-.95.486-1.101z"/>
-								    </g>
+									<g fill="none" fill-rule="evenodd">
+										<path fill="#556B8B"
+											d="M33.392 0l3.624 1.667.984 3.53-1.158 3.36L33.392 10l-3.249-1.639L28 5.196l1.62-3.674zM74.696 3l1.812.833L77 5.598l-.579 1.68L74.696 8l-1.624-.82L72 5.599l.81-1.837zM40.696 70l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L38 72.599l.81-1.837zM4.314 37l2.899 1.334L8 41.157l-.926 2.688L4.314 45l-2.6-1.31L0 41.156l1.295-2.94zM49.314 32l2.899 1.334.787 2.823-.926 2.688L49.314 40l-2.6-1.31L45 36.156l1.295-2.94z" />
+										<path fill="#FFF"
+											d="M99.696 56l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L97 58.599l.81-1.837z" />
+										<path fill="#556B8B"
+											d="M112.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L110 39.599l.81-1.837z" />
+										<path fill="#FFF"
+											d="M82.696 37l1.812.833.492 1.765-.579 1.68-1.725.722-1.624-.82L80 39.599l.81-1.837z" />
+										<path fill="#556B8B"
+											d="M122.618 57l1.087.5.295 1.059-.347 1.008-1.035.433-.975-.492-.643-.95.486-1.101z" />
+									</g>
 								</svg>
 							</div>
 						</div>
-                    </div>
-                </div>
-            </section>
-            <form action="storeval.php" method = "post">
-            <section class="features section">
-                <div class="container">
-					<div class="features-inner section-inner has-bottom-divider">
+					</div>
+				</div>
+			</section>
+			<form action="storeval.php" method="post">
+				<section class="features section">
+					<div class="container">
+						<div class="features-inner section-inner has-bottom-divider">
 
-						<h2 class="section-title mt-0">ENTER PROGRAM VALUES</h2>
-                        <div class="features-wrap">
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-1-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-1-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-a)"/>
-										        <path d="M40 64H16V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-b)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program A</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeA" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeA" value="-1"></p>
-                                </div>
-                            </div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="68" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-2-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-2-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M9.941 63.941v-24c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24h-24z" fill="url(#feature-2-a)" transform="rotate(45 33.941 39.941)"/>
-										        <path d="M16 0v24c0 13.255 10.745 24 24 24h24V24C64 10.745 53.255 0 40 0H16z" fill="url(#feature-2-b)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program B</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeB" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeB" value="-1"></p>
-                                </div>
-                            </div>
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="43.901%" id="feature-3-a">
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="0%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%" id="feature-3-b">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-3-c">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path fill="url(#feature-3-a)" opacity=".32" d="M0 24h64v40H0z"/>
-										        <path fill="url(#feature-3-b)" d="M40 24H24L0 64h64z"/>
-										        <path d="M10 10v22c0 12.15 9.85 22 22 22h22V32c0-12.15-9.85-22-22-22H10z" fill="url(#feature-3-c)" transform="rotate(45 32 32)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program C</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeC" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeC" value="-1"></p>
-                                </div>
-                            </div>
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-4-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-4-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 64H0V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-4-a)" transform="matrix(-1 0 0 1 48 0)"/>
-										        <path d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-4-b)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program D</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeD" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeD" value="-1"></p>
-                                </div>
-                            </div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-5-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-5-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 63H0V39c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-5-a)" transform="matrix(-1 0 0 1 48 0)"/>
-										        <path d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24" fill-opacity=".24" fill="url(#feature-5-a)" transform="matrix(-1 0 0 1 80 0)"/>
-										        <path d="M10.113 10.113v22c0 12.15 9.85 22 22 22h22v-22c0-12.15-9.85-22-22-22h-22z" fill="url(#feature-5-b)" transform="rotate(45 32.113 32.113)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program E</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeE" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeE" value="-1"></p>
-                                </div>
-							</div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-1-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-1-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-a)"/>
-										        <path d="M40 64H16V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-1-b)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program F</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeF" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeF" value="-1"></p>
-                                </div>
-							</div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="68" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-2-a">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity=".16" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-2-b">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M9.941 63.941v-24c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24h-24z" fill="url(#feature-2-a)" transform="rotate(45 33.941 39.941)"/>
-										        <path d="M16 0v24c0 13.255 10.745 24 24 24h24V24C64 10.745 53.255 0 40 0H16z" fill="url(#feature-2-b)"/>
-										    </g>
-										</svg>
-                                    </div>
-                                    <h3 class="feature-title mt-24">Program G</h3>
-                                    <p>Arrival time: <input type="text" name="arrivalTimeG" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeG" value="-1"></p>
-                                </div>
-							</div>
-							<div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="43.901%" id="feature-3-a">
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="0%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%" id="feature-3-b">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-3-c">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path fill="url(#feature-3-a)" opacity=".32" d="M0 24h64v40H0z"/>
-										        <path fill="url(#feature-3-b)" d="M40 24H24L0 64h64z"/>
-										        <path d="M10 10v22c0 12.15 9.85 22 22 22h22V32c0-12.15-9.85-22-22-22H10z" fill="url(#feature-3-c)" transform="rotate(45 32 32)"/>
-										    </g>
-										</svg>
-                                    </div>
-									<h3 class="feature-title mt-24">Program H</h3>
-									<p>Arrival time: <input type="text" name="arrivalTimeH" value="-1"></p>
-									<p>Execution time: <input type="text" name="executeTimeH" value="-1"></p>
-                                </div>
-                            </div>
-                            <div class="feature is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-										<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-										    <defs>
-										        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="feature-6-a">
-										            <stop stop-color="#FDFFDA" offset="0%"/>
-										            <stop stop-color="#F97059" stop-opacity=".798" offset="49.935%"/>
-										            <stop stop-color="#F9425F" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										        <linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%" id="feature-6-b">
-										            <stop stop-color="#F9425F" stop-opacity=".8" offset="0%"/>
-										            <stop stop-color="#47A1F9" stop-opacity="0" offset="100%"/>
-										        </linearGradient>
-										    </defs>
-										    <g fill="none" fill-rule="evenodd">
-										        <path d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24" fill="url(#feature-6-a)"/>
-										        <path fill-opacity=".64" fill="url(#feature-6-b)" d="M24 29.229h40V64H0z"/>
-										    </g>
-										</svg>
+							<h2 class="section-title mt-0">ENTER PROGRAM VALUES</h2>
+							<div class="features-wrap">
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-1-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-1-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-1-a)" />
+													<path
+														d="M40 64H16V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-1-b)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program A</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeA" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeA" value="-1"></p>
 									</div>
-									<h3 class="feature-title mt-24">Done?</h3>
-									<p></p>
-									<button type ="submit" name="submit" class="button button-primary button-shadow">Store and Proceed</button>
-                                </div>
-							</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="68" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-2-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-2-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M9.941 63.941v-24c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24h-24z"
+														fill="url(#feature-2-a)" transform="rotate(45 33.941 39.941)" />
+													<path
+														d="M16 0v24c0 13.255 10.745 24 24 24h24V24C64 10.745 53.255 0 40 0H16z"
+														fill="url(#feature-2-b)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program B</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeB" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeB" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="43.901%"
+														id="feature-3-a">
+														<stop stop-color="#F97059" stop-opacity=".798" offset="0%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%"
+														id="feature-3-b">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity="0" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-3-c">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path fill="url(#feature-3-a)" opacity=".32" d="M0 24h64v40H0z" />
+													<path fill="url(#feature-3-b)" d="M40 24H24L0 64h64z" />
+													<path
+														d="M10 10v22c0 12.15 9.85 22 22 22h22V32c0-12.15-9.85-22-22-22H10z"
+														fill="url(#feature-3-c)" transform="rotate(45 32 32)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program C</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeC" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeC" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-4-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-4-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M24 64H0V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-4-a)" transform="matrix(-1 0 0 1 48 0)" />
+													<path
+														d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-4-b)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program D</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeD" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeD" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-5-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-5-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M24 63H0V39c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-5-a)" transform="matrix(-1 0 0 1 48 0)" />
+													<path
+														d="M40 48H16V24C16 10.745 26.745 0 40 0h24v24c0 13.255-10.745 24-24 24"
+														fill-opacity=".24" fill="url(#feature-5-a)"
+														transform="matrix(-1 0 0 1 80 0)" />
+													<path
+														d="M10.113 10.113v22c0 12.15 9.85 22 22 22h22v-22c0-12.15-9.85-22-22-22h-22z"
+														fill="url(#feature-5-b)" transform="rotate(45 32.113 32.113)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program E</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeE" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeE" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-1-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-1-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-1-a)" />
+													<path
+														d="M40 64H16V40c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-1-b)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program F</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeF" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeF" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="68" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="0%" y1="100%" x2="50%" y2="0%" id="feature-2-a">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity=".16" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-2-b">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M9.941 63.941v-24c0-13.255 10.745-24 24-24h24v24c0 13.255-10.745 24-24 24h-24z"
+														fill="url(#feature-2-a)" transform="rotate(45 33.941 39.941)" />
+													<path
+														d="M16 0v24c0 13.255 10.745 24 24 24h24V24C64 10.745 53.255 0 40 0H16z"
+														fill="url(#feature-2-b)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program G</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeG" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeG" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="43.901%"
+														id="feature-3-a">
+														<stop stop-color="#F97059" stop-opacity=".798" offset="0%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%"
+														id="feature-3-b">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity="0" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-3-c">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path fill="url(#feature-3-a)" opacity=".32" d="M0 24h64v40H0z" />
+													<path fill="url(#feature-3-b)" d="M40 24H24L0 64h64z" />
+													<path
+														d="M10 10v22c0 12.15 9.85 22 22 22h22V32c0-12.15-9.85-22-22-22H10z"
+														fill="url(#feature-3-c)" transform="rotate(45 32 32)" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Program H</h3>
+										<p>Arrival time: <input type="text" name="arrivalTimeH" value="-1"></p>
+										<p>Execution time: <input type="text" name="executeTimeH" value="-1"></p>
+									</div>
+								</div>
+								<div class="feature is-revealing">
+									<div class="feature-inner">
+										<div class="feature-icon">
+											<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+												<defs>
+													<linearGradient x1="50%" y1="100%" x2="50%" y2="0%"
+														id="feature-6-a">
+														<stop stop-color="#FDFFDA" offset="0%" />
+														<stop stop-color="#F97059" stop-opacity=".798"
+															offset="49.935%" />
+														<stop stop-color="#F9425F" stop-opacity="0" offset="100%" />
+													</linearGradient>
+													<linearGradient x1="58.893%" y1="100%" x2="58.893%" y2="18.531%"
+														id="feature-6-b">
+														<stop stop-color="#F9425F" stop-opacity=".8" offset="0%" />
+														<stop stop-color="#47A1F9" stop-opacity="0" offset="100%" />
+													</linearGradient>
+												</defs>
+												<g fill="none" fill-rule="evenodd">
+													<path
+														d="M24 48H0V24C0 10.745 10.745 0 24 0h24v24c0 13.255-10.745 24-24 24"
+														fill="url(#feature-6-a)" />
+													<path fill-opacity=".64" fill="url(#feature-6-b)"
+														d="M24 29.229h40V64H0z" />
+												</g>
+											</svg>
+										</div>
+										<h3 class="feature-title mt-24">Done?</h3>
+										<p></p>
+										<button type="submit" name="submit"
+											class="button button-primary button-shadow">Store and Proceed</button>
+									</div>
+								</div>
 
-                        </div>
-                    </div>
-                    &nbsp;
-                    <footer>
-						<p>LAMP stack project running on Azure services.</p>
-                    </footer>
-                </div>
-            </section>
-            <section class="media section">
-                <div class="container-sm">
-                    <div class="media-inner section-inner">
-                        <div class="media-header text-center">
-    <script src="dist/js/main.min.js"></script>
+							</div>
+						</div>
+						&nbsp;
+						<footer>
+							<p>LAMP stack project running on Azure services.</p>
+						</footer>
+					</div>
+				</section>
+				<section class="media section">
+					<div class="container-sm">
+						<div class="media-inner section-inner">
+							<div class="media-header text-center">
+								<script src="dist/js/main.min.js"></script>
 </body>
 </form>
+
 </html>
