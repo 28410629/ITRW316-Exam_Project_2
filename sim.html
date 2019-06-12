@@ -27,24 +27,8 @@
      die('Could not connect: ' . mysqli_error());
   }
 
-  $sql = "SELECT * FROM programs";
-  $retval = conn->query( $sql, $conn );
 
-  if(! $retval ) {
-     die('Could not get data: ' . mysqli_error());
-  }
-
-  while($row = mysqli_fetch_array($retval, MYSQL_NUM)) {
-     echo "ID :{$row[0]}  <br> ".
-        "prog1 : {$row[1]} <br> ".
-        "prog2 : {$row[2]} <br> ".
-        "--------------------------------<br>";
-  }
-
-  mysqli_free_result($retval);
-  echo "Fetched data successfully\n";
-
-  mysqli_close($conn);
+  $conn->close();
 
 ?>
 
