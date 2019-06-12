@@ -27,6 +27,8 @@
      die('Could not connect: ' . mysqli_error());
   }
 
+  $sql = "SELECT * FROM programs";
+  $result = $conn->query($sql);
 
   $conn->close();
 
