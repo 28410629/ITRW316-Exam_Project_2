@@ -2,7 +2,7 @@
 <?php
   echo 'script has started';
 
-  $dbhost = '40.127.6.141';
+  $dbhost = 'localhost';
   $dbuser = 'userMorne';
   $dbpass = 'root';
   $db = 'Project2';
