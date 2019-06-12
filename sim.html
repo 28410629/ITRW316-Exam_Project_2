@@ -35,7 +35,7 @@
 
       while($row = $result->fetch_assoc())
       {
-          
+
 
           $_SESSION["pr1"] = $row["program1"];
           $_SESSION["pr1_l"] = $row["program1_leng"];
@@ -755,17 +755,17 @@
 			var q2 = false;
 			var q3 = false;
 			// time quanta for queues (DO NOT CHANGE FOR RESET!)
-			var q1T = document.getElementById("pointAInputId").value; 
-			var q2T = document.getElementById("pointBInputId").value; 
-			var q3T = document.getElementById("pointCInputId").value; 
+			var q1T = document.getElementById("pointAInputId").value;
+			var q2T = document.getElementById("pointBInputId").value;
+			var q3T = document.getElementById("pointCInputId").value;
 			// time quanta for queues (DO NOT CHANGE FOR RESET!)
-			var q1Time = q1T; 
+			var q1Time = q1T;
 			var q2Time = q2T;
 			var q3Time = q3T;
 			// result for loop variables
-			var q1Result; 
-			var q2Result; 
-			var q3Result; 
+			var q1Result;
+			var q2Result;
+			var q3Result;
 			// values from textboxes
 			var elements = ["programArrivalA","programExecutionA",
 							"programArrivalB","programExecutionB",
@@ -777,7 +777,7 @@
 							"programArrivalH","programExecutionH"];
 			// assign values
 			for (i = 0; i < 16; i = i + 2) {
-				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, 0]; 
+				item = [document.getElementById(elements[i]).value, document.getElementById(elements[i+1]).value, 0];
 				/* 	item:
 					0 - A
 					1 - E
@@ -801,12 +801,12 @@
 				}
 				// decrement arrival time unit
 				for (a = 0; a < arr.length; a++) {
-					arr[a][0]--; 
+					arr[a][0]--;
 				}
 				// remove programs that are done!
 				for (k = 0; k < arr.length; k++) {
 					if (arr[k][1] == 0) {
-						arr.pop([k]); 
+						arr.pop([k]);
 					}
 				}
 				// decrement execution time unit from other queues
@@ -876,7 +876,7 @@
 						arr[b][2] = 1;
 					}
 				}
-				// print time unit result 
+				// print time unit result
 				document.getElementById("resultsTextArea").value += "Time : ";
 				document.getElementById("resultsTextArea").value += j;
 				document.getElementById("resultsTextArea").value += "\n";
@@ -905,7 +905,7 @@
 				document.getElementById("resultsTextArea").value += "Q3 :";
 				// for to add all q3
 				for (q3Result = 0; q3Result < arr.length; q3Result++) { // queue 1
-					if (arr[f][2] == 3) {
+					if (arr[q3Result][2] == 3) {
 						document.getElementById("resultsTextArea").value += q3Result;
 						document.getElementById("resultsTextArea").value += "(";
 						document.getElementById("resultsTextArea").value += arr[q3Result][1];
