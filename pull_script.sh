@@ -7,20 +7,20 @@
 
 # --add the following to "sudo crontab -e", take note dir should be set to a directory that the script is located in.
 # * * * * * dir/pull_script.sh
-
+DATE=$(date)
 ACTION='\033[1;90m'
 FINISHED='\033[1;96m'
 READY='\033[1;92m'
 NOCOLOR='\033[0m' # No Color
 ERROR='\033[0;31m'
 
-echo
-echo -e ${ACTION}Checking Git repo
-echo -e =======================${NOCOLOR}
+echo $DATE >> /home/userMorne/pull.log
+echo "Checking Git repo" >> /home/userMorne/pull.log
+echo ======================= >> /home/userMorne/pull.log
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" != "master" ]
   then
-    echo -e ${ERROR}Not on master. Aborting. ${NOCOLOR}
+    echo "Not on master. Aborting." >> /home/userMorne/pull.log
     echo
     exit 0
     else
@@ -30,13 +30,13 @@ if [ "$BRANCH" != "master" ]
       if [ "$HEADHASH" != "$UPSTREAMHASH" ]
         then
           # add code here to set what happens when not up to date
-          echo -e ${ERROR}Not up to date with origin. Pulling.${NOCOLOR}
+          echo "Not up to date with origin. Pulling." >> /home/userMorne/pull.log
           git pull
-          rm -Rv /var/www/html/*
-          cp -Rv ./* /var/www/html/
+          rm -Rv /var/www/html/* >>/home/userMorne/pull.log 2>&1
+          cp -Rv ./* /var/www/html/ >>/home/userMorne/pull.log 2>&1
           echo
           exit 0
         else
-          echo -e ${FINISHED}Current branch is up to date with origin/master.${NOCOLOR}
+          echo "Current branch is up to date with origin/master." >> /home/userMorne/pull.log
       fi
 fi
