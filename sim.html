@@ -21,26 +21,31 @@
 
   echo "my id is: ".$myID;
 
-  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-
-
-    $result = mysqli_query("SELECT * FROM programs", $conn);
-
-
-    while($row = mysqli_fetch_array($result, MYSQL_NUM))
-    {
-      echo "ROW";
-      echo "<p>" . $row[0] . "</p>";
-      echo "<p>" . $row[1] . "</p>";
-
-    }
-
-    $conn->close();
-
+  if(! $conn ) {
+     die('Could not connect: ' . mysql_error());
   }
+
+  $sql = 'SELECT * FROM programs';
+  mysql_select_db($db);
+  $retval = mysql_query( $sql, $conn );
+
+  if(! $retval ) {
+     die('Could not get data: ' . mysql_error());
+  }
+
+  while($row = mysql_fetch_array($retval, MYSQL_NUM)) {
+     echo "ID :{$row[0]}  <br> ".
+        "prog1 : {$row[1]} <br> ".
+        "prog2 : {$row[2]} <br> ".
+        "--------------------------------<br>";
+  }
+
+  mysql_free_result($retval);
+  echo "Fetched data successfully\n";
+
+  mysql_close($conn);
 ?>
 
 	<script>
