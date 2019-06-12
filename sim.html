@@ -17,17 +17,7 @@
       die("Connection failed: " . $conn->connect_error);
   }
 
-
   $lastID =  $_SESSION["lastID"];
-  $query = "Select * from programs where id=?lastID";
-  $result = mysql_query($query);
-  echo "<table>";
-
-  while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-  echo "<tr><td>" . $row['id'] . "</td><td>" . $row['program1'] . "</td></tr>";
-  }
-
-  echo "</table>";
 
   $conn->close();
 
