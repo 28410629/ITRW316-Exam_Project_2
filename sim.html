@@ -2,11 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
+
 <?php
   session_start();
   $lastID =  $_SESSION["lastID"];
   echo "My id is:" . $lastID;
 ?>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -746,7 +748,7 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program A</h3>
-									<p class="text-sm mb-0">Arrival time:</p>
+									<p class="text-sm mb-0">Arrival time:<?php $lastID ?></p>
 									<p class="text-sm mb-0">Execution time:</p>
 								</div>
 							</div>
