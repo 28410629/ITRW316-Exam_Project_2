@@ -748,7 +748,7 @@
 			for (i = 0; i < elements.length; i++) {
 				document.getElementById(elements[i]).value = 123;
 			}
-			
+
 		}
 	</script>
 </head>
@@ -979,8 +979,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program F</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutF" id="programArrivalF"></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutF" id="programExecutionF"></output></p>
+									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutF" id="programArrivalF"><?php echo $_SESSION["pr6"] ?></output></p>
+									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutF" id="programExecutionF"><?php echo $_SESSION["pr6_l"] ?></output></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programG">
