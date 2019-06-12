@@ -48,15 +48,12 @@
       $query = ("INSERT INTO programs (program1, program2, program3, program4, program5, program6, program7, program8, DateAdded, program1_leng, program2_leng, program3_leng, program4_leng, program5_leng, program6_leng, program7_leng, program8_leng) VALUES ($program1,$program2,$program3,$program4,$program5,$program6,$program7,$program8,SYSDATE(),$program1_ex,$program2_ex,$program3_ex,$program4_ex,$program5_ex,$program6_ex,$program7_ex,$program8_ex)");
 
       if(mysql_query($query,$dbconn))
-      {
         echo '1 record added';
-      }
       else
-      {
         die('Error: ' . mysql_error());
-      }
 
-      mysql_close($dbconn)
+
+      mysql_close($dbconn);
   }
 
 ?>
