@@ -1,13 +1,15 @@
 
 <?php
 
-  $dbhost = 'localhost';
+  $dbhost = '40.127.6.141';
   $dbuser = 'userMorne';
   $dbpass = 'root';
   $db = 'Project2';
 
   $dbconn = mysql_connect($dbhost, $dbuser, $dbpass);
   mysql_select_db($db,$dbconn);
+
+  echo "Conn succsesfull";
 
   if (isset($_POST['submit']))
   {
