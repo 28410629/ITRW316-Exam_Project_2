@@ -771,6 +771,10 @@
 							"programArrivalF","programExecutionF",
 							"programArrivalG","programExecutionG",
 							"programArrivalH","programExecutionH"];
+
+
+			var largestE = 0;
+			var largestA = 0;
 			// assign values
 			for (i = 0; i < 16; i = i + 2) {
 
@@ -781,10 +785,19 @@
 					2 - current assigned queue
 					3 - executed time per queue
 				*/
+				if(item[0] > largestA)
+					largestA=item[0];
+					
+				if(item[1] > largestE)
+					largestE=item[1];
+
 				arr.push(item);
 			}
+
+			var totalTime = largestE+largestA;
+
 			// add TOTAL TIME UNITS REQUIRED ON FIRST FOR!
-			for (j = 1; j < 34; j++) {
+			for (j = 1; j < totalTime; j++) {
 				// decrement current active queue!
 				for (c = 0; c < arr.length; c++) { // queue 1
 					if (arr[c][2] == 1) {
@@ -881,18 +894,7 @@
 						}
 					}
 				}
-				// move programs to next queue! REVISE QUANTUM IS 0 SHOULD ACTIVATE move!
-				if (q1) {
 
-				} else {
-					if (q2) {
-
-					} else {
-						if (q3) {
-							// do nothing!
-						}
-					}
-				}
 				// check arrival
 				for (b = 0; b < arr.length; b++) {
 					if (arr[b][0] == 0) {
@@ -908,7 +910,7 @@
 				for (q1Result = 0; q1Result < arr.length; q1Result++) { // queue 1
 					if (arr[q1Result][2] == 1) {
 						//if (arr[q1Result][2] == 1 && arr[q1Result][1] > 0 && arr[q1Result][0] < 1) {
-						document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q1Result+65) + " (" + arr[q1Result][1] + "); ";
+						document.getElementById("resultsTextArea").value += "Program " + String.fromCharCode(q1Result+65) + " (" + arr[q1Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
@@ -917,7 +919,7 @@
 				for (q2Result = 0; q2Result < arr.length; q2Result++) { // queue 1
 					if (arr[q2Result][2] == 2) {
 						//if (arr[q2Result][2] == 2 && arr[q2Result][1] > 0 && arr[q2Result][0] < 1) {
-							document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q2Result+65) + " (" + arr[q2Result][1] + "); ";
+							document.getElementById("resultsTextArea").value += "Program " + String.fromCharCode(q2Result+65) + " (" + arr[q2Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
@@ -926,7 +928,7 @@
 				for (q3Result = 0; q3Result < arr.length; q3Result++) { // queue 1
 					if (arr[q3Result][2] == 3) {
 						// if (arr[q3Result][2] == 3 && arr[q3Result][1] > 0 && arr[q3Result][0] < 1) {
-							document.getElementById("resultsTextArea").value += "Program-" + String.fromCharCode(q3Result+65) + " (" + arr[q3Result][1] + "); ";
+							document.getElementById("resultsTextArea").value += "Program " + String.fromCharCode(q3Result+65) + " (" + arr[q3Result][1] + "); ";
 					}
 				}
 				document.getElementById("resultsTextArea").value += "\n";
