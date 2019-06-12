@@ -746,9 +746,8 @@
 			//var arr = [];
 			var i;
 			for (i = 0; i < elements.length; i++) {
-				document.getElementById(resultsTextArea).value += document.getElementById(elements[i]).value;
+				document.getElementById(resultsTextArea).value = document.getElementById(elements[i]).value;
 			}
-
 		}
 	</script>
 </head>
@@ -820,8 +819,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program A</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutA" id="programArrivalA"><?php echo $_SESSION["pr1"] ?></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutA" id="programExecutionA"><?php echo $_SESSION["pr1_l"] ?></output></p>
+									<p class="text-sm mb-0" >Arrival time: <input type="text" name="programArrivalOutA" id="programArrivalA" value="<?php echo $_SESSION['pr1'];?>"/></p>
+									<p class="text-sm mb-0" >Execution time: <input type="text" name="programExecutionOutA" id="programExecutionA" value="<?php echo $_SESSION['pr1_l'];?>"/></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programB">
@@ -850,8 +849,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program B</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutB" id="programArrivalB"><?php echo $_SESSION["pr2"] ?></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutB" id="programExecutionB"><?php echo $_SESSION["pr2_l"] ?></output></p>
+									<p class="text-sm mb-0" >Arrival time: <input type="text" name="programArrivalOutB" id="programArrivalB" value="<?php echo $_SESSION['pr2'];?>"/></p>
+									<p class="text-sm mb-0" >Execution time: <input type="text" name="programExecutionOutB" id="programExecutionB" value="<?php echo $_SESSION['pr2_l'];?>"/></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programC">
@@ -885,8 +884,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program C</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutC" id="programArrivalC"><?php echo $_SESSION["pr3"] ?></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutC" id="programExecutionC"><?php echo $_SESSION["pr3_l"] ?></output></p>
+									<p class="text-sm mb-0" >Arrival time: <input type="text" name="programArrivalOutC" id="programArrivalC" value="<?php echo $_SESSION['pr3'];?>"/></p>
+									<p class="text-sm mb-0" >Execution time: <input type="text" name="programExecutionOutC" id="programExecutionC" value="<?php echo $_SESSION['pr3_l'];?>"/></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programD">
@@ -915,8 +914,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program D</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutD" id="programArrivalD"><?php echo $_SESSION["pr4"] ?></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutD" id="programExecutionD"><?php echo $_SESSION["pr4_l"] ?></output></p>
+									<p class="text-sm mb-0" >Arrival time: <input type="text" name="programArrivalOutD" id="programArrivalD" value="<?php echo $_SESSION['pr4'];?>"/></p>
+									<p class="text-sm mb-0" >Execution time: <input type="text" name="programExecutionOutD" id="programExecutionD" value="<?php echo $_SESSION['pr4_l'];?>"/></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programE">
@@ -949,8 +948,8 @@
 										</svg>
 									</div>
 									<h3 class="feature-title mt-24">Program E</h3>
-									<p class="text-sm mb-0" >Arrival time: <output name="programArrivalOutE" id="programArrivalE"><?php echo $_SESSION["pr5"] ?></output></p>
-									<p class="text-sm mb-0" >Execution time: <output name="programExecutionOutE" id="programExecutionE"><?php echo $_SESSION["pr5_l"] ?></output></p>
+									<p class="text-sm mb-0" >Arrival time: <input type="text" name="programArrivalOutE" id="programArrivalE" value="<?php echo $_SESSION['pr5'];?>"/></p>
+									<p class="text-sm mb-0" >Execution time: <input type="text" name="programExecutionOutE" id="programExecutionE" value="<?php echo $_SESSION['pr5_l'];?>"/></p>
 								</div>
 							</div>
 							<div class="program-blocks" id="programF">
