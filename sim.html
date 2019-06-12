@@ -28,7 +28,7 @@
      die('Could not connect: ' . mysqli_error());
   }
 
-  $sql = "SELECT * FROM programs";
+  $sql = "SELECT * FROM programs WHERE ID=$myID";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
