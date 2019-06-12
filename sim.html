@@ -19,7 +19,7 @@
   $db = 'Project2';
   $myID = $_SESSION["lastID"];
 
-  echo "my id is: ".$myID;
+
 
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
 
@@ -35,7 +35,7 @@
 
       while($row = $result->fetch_assoc())
       {
-          echo "id: " . $row["ID"]. " - prog1: " . $row["program1"]. " " . $row["program1_leng"]. "<br>";
+          
 
           $_SESSION["pr1"] = $row["program1"];
           $_SESSION["pr1_l"] = $row["program1_leng"];
