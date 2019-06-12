@@ -44,7 +44,7 @@
       if ($conn->query($sql) === TRUE) {
           $_SESSION["lastID"] = mysqli_insert_id($conn);
           echo "New record created successfully, ID:".$_SESSION["lastID"];
-          //header('Location: /sim.html');
+          header('Location: /sim.html');
           exit();
       }
       else {
