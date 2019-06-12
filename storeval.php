@@ -7,7 +7,7 @@
   $dbpass = 'root';
   $db = 'Project2';
 
-  $dbconn = mysql_connect($dbhost, $dbuser, $dbpass);
+  $dbconn = mysqli_connect($dbhost, $dbuser, $dbpass);
 
   if (!$dbconn)
   {
